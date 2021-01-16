@@ -19,7 +19,7 @@ const dimensions = {
 const images = {
   "women clothing": require("../assets/images/women-clothing.png"),
   "men clothing": require("../assets/images/male-clothes.png"),
-  jewelery: require("../assetss/images/earrings.png"),
+  jewelery: require("../assets/images/earrings.png"),
   electronics: require("../assets/images/electronics.png"),
 };
 const fonts = {
