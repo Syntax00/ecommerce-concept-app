@@ -1,4 +1,4 @@
-import { useFonts } from "@expo-google-fonts/inter";
+import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
