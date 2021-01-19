@@ -10,25 +10,22 @@ import styles from "./AppCarousel.styles";
 
 interface ItemType {
   title: string;
-  thumbnail: string;
+  image: string;
   description: string;
   id?: number;
 }
 
 const _renderItem = ({ item }: { item: ItemType }) => {
-  const { thumbnail, title, description } = item;
+  const { image, title, description } = item;
 
   return (
     <View style={styles.slide}>
-      <Image
-        source={{ uri: thumbnail }}
-        style={{ width: "100%", height: 190 }}
-      />
+      <Image source={{ uri: image }} style={{ width: "100%", height: 190 }} />
       <View style={styles.slideContent}>
         <CustomText style={styles.title}>
           {title && title.toUpperCase()}
         </CustomText>
-        <CustomText style={styles.description}>{description}</CustomText>
+        <CustomText style={styles.description}>{description.slice(0, 200)}</CustomText>
       </View>
     </View>
   );
