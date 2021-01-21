@@ -10,9 +10,8 @@ import Categories from "../../components/Categories/Categories";
 import Separator from "../../components/UIElements/Separator";
 import LatestProducts from "../../components/LatestProducts/LatestProducts";
 import WithNetworkCall from "../../components/WithNetworkCall/WithNetworkCall";
-import CustomText from "../../components/UIElements/CustomText";
+import Loader from "../../components/UIElements/Loader";
 
-import CATEGORIES_APIS from "../../Networking/categoriesAPIs";
 import PRODUCTS_APIS from "../../Networking/productsAPIs";
 import { fetchCategories } from "../../store/slices/categories";
 import { fetchUserData } from "../../store/slices/user";
@@ -33,13 +32,13 @@ const HomeContent = ({ latestProducts }: { latestProducts: ProductType[] }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async function () {
+    (() => {
       dispatch(fetchCategories());
       dispatch(fetchUserData());
     })();
   }, []);
 
-  if (categoriesLoading) return <CustomText>Loading Categories...</CustomText>;
+  if (categoriesLoading) return <Loader message="Loading Categories" />;
 
   return (
     <View>
@@ -82,13 +81,11 @@ const Home = () => {
       >
         <WithNetworkCall
           promiseFunc={() =>
-            Promise.all([
-              CATEGORIES_APIS.getAllCategories(),
-              PRODUCTS_APIS.getAllProducts({ sort: "desc", limit: 5 }),
-            ])
+            PRODUCTS_APIS.getAllProducts({ sort: "desc", limit: 5 })
           }
-          OnSuccessComponent={({ data: [, products] }: { data: any[] }) => (
-            <HomeContent latestProducts={products} />
+          idleMessage="Loading Products"
+          OnSuccessComponent={({ data }: { data: ProductType[] }) => (
+            <HomeContent latestProducts={data} />
           )}
           deps={[refresh]}
         />

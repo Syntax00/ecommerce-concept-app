@@ -8,8 +8,6 @@ import { dimensions } from "../../../utilities/common";
 
 import styles from "./AppCarousel.styles";
 
-
-
 const _renderItem = ({ item }: { item: ProductType }) => {
   const { image, title, description } = item;
 
@@ -20,7 +18,10 @@ const _renderItem = ({ item }: { item: ProductType }) => {
         <CustomText style={styles.title}>
           {title && title.toUpperCase()}
         </CustomText>
-        <CustomText style={styles.description}>{description.slice(0, 200)}</CustomText>
+        
+        <CustomText style={styles.description}>
+          {description.slice(0, 200)}
+        </CustomText>
       </View>
     </View>
   );
