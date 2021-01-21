@@ -1,7 +1,7 @@
 import { Dimensions } from "react-native";
 
 const themeColors = {
-  primary: "#FE9273",
+  primary: "#F2927E",
   secondary: "#555",
   black: "#000",
   white: "#FFF",

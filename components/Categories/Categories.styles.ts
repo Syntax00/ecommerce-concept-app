@@ -6,18 +6,19 @@ export default StyleSheet.create({
     flex: 1,
   },
   categoryCardContainer: {
+    flexDirection: 'row',
     backgroundColor: themeColors.white,
-    width: 0.35 * dimensions.windowWidth,
+    width: 0.4 * dimensions.windowWidth,
     marginHorizontal: 7,
-    padding: 15,
+    padding: 10,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10,
+    borderRadius: 7,
   },
   categoryImage: {
-    width: 70,
-    height: 70,
-    marginBottom: 10,
+    width: 40,
+    height: 40,
+    marginRight: 10
   },
   categoryTitle: {
     fontWeight: "500",

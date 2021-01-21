@@ -42,17 +42,17 @@ const HomeContent = ({ latestProducts }: { latestProducts: ProductType[] }) => {
 
   return (
     <View>
+      <Categories data={categoriesData} />
+      <Separator />
+
       <PageContainer>
         <View style={styles.carouselContainer}>
           <AppCarousel items={latestProducts} />
         </View>
+        
         <Separator />
       </PageContainer>
-
-      <Categories data={categoriesData} />
-
-      <Separator />
-
+      
       <LatestProducts data={latestProducts} />
     </View>
   );
@@ -70,8 +70,10 @@ const Home = () => {
       <PageContainer>
         <SearchBar />
       </PageContainer>
+
       <ScrollView
         contentContainerStyle={{ paddingBottom: 40 }}
+        showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl
             refreshing={refresh}

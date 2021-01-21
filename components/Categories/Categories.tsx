@@ -20,8 +20,6 @@ const CategoryCard = ({ name = "" }: { name: string }) => (
 
 const Categories = ({ data = [] }: { data: string[] }) => (
   <View>
-    <SectionTitle>Categories</SectionTitle>
-
     <ScrollView
       contentContainerStyle={{ paddingHorizontal: 10 }}
       horizontal

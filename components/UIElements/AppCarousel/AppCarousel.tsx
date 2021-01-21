@@ -13,12 +13,12 @@ const _renderItem = ({ item }: { item: ProductType }) => {
 
   return (
     <View style={styles.slide}>
-      <Image source={{ uri: image }} style={{ width: "100%", height: 190 }} />
+      <Image source={{ uri: image }} style={styles.image} />
       <View style={styles.slideContent}>
         <CustomText style={styles.title}>
           {title && title.toUpperCase()}
         </CustomText>
-        
+
         <CustomText style={styles.description}>
           {description.slice(0, 200)}
         </CustomText>
