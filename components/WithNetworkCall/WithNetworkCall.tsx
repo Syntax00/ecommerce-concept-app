@@ -8,12 +8,18 @@ const WithAPIAccess = ({
   promiseFunc,
   OnSuccessComponent,
   retrieveSuccessData,
+  deps = [],
 }: {
   promiseFunc: () => void;
   OnSuccessComponent: any;
   retrieveSuccessData?: any;
+  deps: any[];
 }) => {
-  const { data, error, loading } = useServerCall(promiseFunc, [], retrieveSuccessData);
+  const { data, error, loading } = useServerCall(
+    promiseFunc,
+    deps,
+    retrieveSuccessData
+  );
   if (loading) return <CustomText>Loading ...</CustomText>;
   if (error) return <CustomText>Error ...</CustomText>;
 

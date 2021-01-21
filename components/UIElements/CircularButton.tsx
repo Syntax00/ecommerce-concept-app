@@ -4,12 +4,7 @@ import { TouchableOpacity, StyleSheet } from "react-native";
 import { FontAwesome as FontAwesomeIcon } from "@expo/vector-icons";
 import { themeColors } from "../../utilities/common";
 
-interface ButtonType {
-  action: () => void;
-  icon: any;
-}
-
-const CircularButton = ({ action, icon }: ButtonType) => {
+const CircularButton = ({ action, icon }: ButtomType) => {
   return (
     <TouchableOpacity onPress={action} style={styles.controller}>
       <FontAwesomeIcon name={icon} style={styles.controllerIcon} />

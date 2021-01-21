@@ -1,7 +1,6 @@
-import * as React from "react";
-import { ScrollView, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { RefreshControl, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 import AppCarousel from "../../components/UIElements/AppCarousel/AppCarousel";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -15,70 +14,85 @@ import CustomText from "../../components/UIElements/CustomText";
 
 import CATEGORIES_APIS from "../../Networking/categoriesAPIs";
 import PRODUCTS_APIS from "../../Networking/productsAPIs";
-import { actions } from "../../store/slices/cart";
+import { fetchCategories } from "../../store/slices/categories";
+import { fetchUserData } from "../../store/slices/user";
 
 import styles from "./Home.styles";
 
-const HomeContent = ({
-  latestProducts,
-  categories,
-}: {
-  latestProducts: any[];
-  categories: string[];
-}) => {
-  const cart = useSelector((state) => state);
+const HomeContent = ({ latestProducts }: { latestProducts: ProductType[] }) => {
+  const {
+    categoriesState: {
+      data: categoriesData,
+      loading: categoriesLoading,
+      error: categoriesError,
+    },
+  } = useSelector((state: any) => ({
+    categoriesState: state.categories,
+    userState: state.user,
+  }));
   const dispatch = useDispatch();
-  console.log({ cart });
-  const onAddToCart = () => {
-    dispatch(actions.add(latestProducts && latestProducts[0]));
-  };
-  const onRemoveFromCart = () => {
-    dispatch(actions.remove());
-  };
+
+  useEffect(() => {
+    (async function () {
+      dispatch(fetchCategories());
+      dispatch(fetchUserData());
+    })();
+  }, []);
+
+  if (categoriesLoading) return <CustomText>Loading Categories...</CustomText>;
 
   return (
-    <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
+    <View>
       <PageContainer>
         <View style={styles.carouselContainer}>
           <AppCarousel items={latestProducts} />
         </View>
         <Separator />
       </PageContainer>
-      <TouchableOpacity onPress={onAddToCart}>
-        <CustomText>Increment</CustomText>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onRemoveFromCart}>
-        <CustomText>Decrement</CustomText>
-      </TouchableOpacity>
-      <Categories data={categories} />
+
+      <Categories data={categoriesData} />
 
       <Separator />
+
       <LatestProducts data={latestProducts} />
-    </ScrollView>
+    </View>
   );
 };
 
 const Home = () => {
-  const [cats, setCats] = React.useState([]);
+  const [refresh, setRefresh] = useState(false);
+
+  useEffect(() => {
+    setRefresh(false);
+  }, [refresh]);
 
   return (
     <CustomSafeAreaView>
       <PageContainer>
         <SearchBar />
       </PageContainer>
-
-      <WithNetworkCall
-        promiseFunc={() =>
-          Promise.all([
-            CATEGORIES_APIS.getAllCategories(),
-            PRODUCTS_APIS.getAllProducts({ sort: "desc", limit: 5 }),
-          ])
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: 40 }}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => setRefresh(true)}
+          />
         }
-        OnSuccessComponent={({ data: [, products] }: { data: any[] }) => (
-          <HomeContent latestProducts={products} categories={cats} />
-        )}
-        retrieveSuccessData={([categories]: any[]) => setCats(categories)}
-      />
+      >
+        <WithNetworkCall
+          promiseFunc={() =>
+            Promise.all([
+              CATEGORIES_APIS.getAllCategories(),
+              PRODUCTS_APIS.getAllProducts({ sort: "desc", limit: 5 }),
+            ])
+          }
+          OnSuccessComponent={({ data: [, products] }: { data: any[] }) => (
+            <HomeContent latestProducts={products} />
+          )}
+          deps={[refresh]}
+        />
+      </ScrollView>
     </CustomSafeAreaView>
   );
 };

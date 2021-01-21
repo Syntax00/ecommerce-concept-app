@@ -6,37 +6,28 @@ import CustomText from "../UIElements/CustomText";
 
 import styles from "./LatestProducts.styles";
 
-interface LatestProductType {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category?: string;
-  image: string;
-}
+const LatestProductCard = ({ data }: { data: ProductType }) => {
+  const { title, price, image } = data || {};
 
-const LatestProductCard = ({
-  data: { id, title, price, image } = {},
-}: {
-  data: any;
-}) => (
-  <TouchableOpacity style={styles.productCardContainer}>
-    <View style={styles.newPatchWrapper}>
-      <CustomText style={styles.newPatch}>New</CustomText>
-    </View>
+  return (
+    <TouchableOpacity style={styles.productCardContainer}>
+      <View style={styles.newPatchWrapper}>
+        <CustomText style={styles.newPatch}>New</CustomText>
+      </View>
 
-    <Image source={{ uri: image }} style={styles.productImage} />
+      <Image source={{ uri: image }} style={styles.productImage} />
 
-    <View>
-      <CustomText style={styles.title} numberOfLines={3}>
-        {title}
-      </CustomText>
-      <CustomText style={styles.price}>{`$${price}`}</CustomText>
-    </View>
-  </TouchableOpacity>
-);
+      <View>
+        <CustomText style={styles.title} numberOfLines={3}>
+          {title}
+        </CustomText>
+        <CustomText style={styles.price}>{`$${price}`}</CustomText>
+      </View>
+    </TouchableOpacity>
+  );
+};
 
-const LatestProducts = ({ data = [] }: { data: LatestProductType[] }) => (
+const LatestProducts = ({ data = [] }: { data: ProductType[] }) => (
   <View>
     <SectionTitle>Latest Products</SectionTitle>
 

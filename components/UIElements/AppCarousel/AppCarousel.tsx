@@ -8,14 +8,9 @@ import { dimensions } from "../../../utilities/common";
 
 import styles from "./AppCarousel.styles";
 
-interface ItemType {
-  title: string;
-  image: string;
-  description: string;
-  id?: number;
-}
 
-const _renderItem = ({ item }: { item: ItemType }) => {
+
+const _renderItem = ({ item }: { item: ProductType }) => {
   const { image, title, description } = item;
 
   return (
@@ -31,7 +26,7 @@ const _renderItem = ({ item }: { item: ItemType }) => {
   );
 };
 
-const AppCarousel = ({ items = [] }: { items: ItemType[] }) => {
+const AppCarousel = ({ items = [] }: { items: ProductType[] }) => {
   const cRef = useRef(null);
 
   return (

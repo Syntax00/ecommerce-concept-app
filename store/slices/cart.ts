@@ -1,22 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface CartItem {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-}
-
 const cartSlice = createSlice({
   name: "cart",
   initialState: [],
   reducers: {
-    add: (state: CartItem[], action: { payload: CartItem }) => {
+    add: (state: ProductType[], action: { payload: ProductType }) => {
       state.push(action.payload);
     },
-    remove: (state: CartItem[]) => {
+    remove: (state: ProductType[]) => {
       state.pop();
     },
   },

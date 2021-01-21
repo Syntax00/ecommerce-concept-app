@@ -13,6 +13,7 @@ function useServerCall(
       data: null,
     }
   );
+  
   useEffect(() => {
     (async () => {
       try {
@@ -32,6 +33,7 @@ function useServerCall(
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
+  
   return state;
 }
 
