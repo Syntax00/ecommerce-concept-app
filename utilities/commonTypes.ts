@@ -11,3 +11,6 @@ interface ButtomType {
   icon: string;
   id?: number;
 }
+
+type unaryFunction = (x: any) => void;
+type binaryFunction = (x: any, y: any) => void;
