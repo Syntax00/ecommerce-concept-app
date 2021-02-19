@@ -60,6 +60,7 @@ const ProductDetailsView = ({
         <View style={styles.addToCartWrapper}>
           <CustomButton
             label="Add to Cart"
+            secondary
             icon="shopping-cart"
             pressAction={() => alert("ttt")}
           />

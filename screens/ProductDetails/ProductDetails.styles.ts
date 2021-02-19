@@ -7,8 +7,7 @@ export default StyleSheet.create({
     paddingVertical: 20,
     marginBottom: 20,
     paddingBottom: 0,
-    borderBottomWidth: 10,
-    borderBottomColor: themeColors.gray1,
+    borderBottomColor: themeColors.primary,
   },
   productImage: {
     height: dimensions.windowHeight * 0.27,
@@ -49,7 +48,7 @@ export default StyleSheet.create({
   },
   productCategoryWrapper: { flexDirection: "row", marginBottom: 10 },
   productDescription: {
-    fontSize: 15,
+    fontSize: 14,
     color: themeColors.secondary,
   },
   addToCartWrapper: {

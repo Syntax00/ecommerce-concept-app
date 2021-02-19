@@ -87,21 +87,19 @@ const CategoryProducts = ({ route }: { route: any }) => {
   const categoryName = categoryId[0].toUpperCase() + categoryId.slice(1);
 
   return (
-    <CustomSafeAreaView>
-      <WithNetworkCall
-        promiseFunc={() => PRODUCTS_APIS.getProductsByCategory(categoryId)}
-        idleMessage={`Loading Products in ${categoryName}`}
-        OnSuccessComponent={({ data = [] }: { data: ProductType[] }) => (
-          <CategryProductsView
-            data={data}
-            handleRefresh={setRefresh}
-            refresh={refresh}
-            categoryName={categoryName}
-          />
-        )}
-        deps={[refresh]}
-      />
-    </CustomSafeAreaView>
+    <WithNetworkCall
+      promiseFunc={() => PRODUCTS_APIS.getProductsByCategory(categoryId)}
+      idleMessage={`Loading Products in ${categoryName}`}
+      OnSuccessComponent={({ data = [] }: { data: ProductType[] }) => (
+        <CategryProductsView
+          data={data}
+          handleRefresh={setRefresh}
+          refresh={refresh}
+          categoryName={categoryName}
+        />
+      )}
+      deps={[refresh]}
+    />
   );
 };
 

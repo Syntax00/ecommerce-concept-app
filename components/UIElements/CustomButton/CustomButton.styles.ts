@@ -19,7 +19,7 @@ export default StyleSheet.create({
   secondary: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: themeColors.primary,
+    backgroundColor: themeColors.black,
     justifyContent: "space-between",
     marginVertical: 5,
     padding: 20,
@@ -33,7 +33,7 @@ export default StyleSheet.create({
     fontWeight: "500",
   },
   btnTextSecondary: {
-    color: themeColors.black,
+    color: themeColors.white,
     fontWeight: "500",
   },
   btnIcon: {
@@ -46,7 +46,7 @@ export default StyleSheet.create({
     textAlign: "center",
     fontSize: 22,
     paddingRight: 10,
-    color: themeColors.black,
+    color: themeColors.white,
   },
   label: { flex: 1 },
   disabled: { backgroundColor: "#E9EBEE" },
