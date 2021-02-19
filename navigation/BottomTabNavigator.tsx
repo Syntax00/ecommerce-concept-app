@@ -5,6 +5,7 @@ import * as React from "react";
 import Home from "../screens/Home/Home";
 import Profile from "../screens/Profile/Profile";
 import TabBarIcon from "./TabBarIcon";
+import CategoryProducts from "../screens/CategoryProducts/CategoryProducts";
 
 import {
   BottomTabParamList,
@@ -31,6 +32,17 @@ const HomeNavigator = () => (
       component={Profile}
       options={{
         headerTitle: "My Bag",
+      }}
+    />
+    <HomeStack.Screen
+      name="CategoryProducts"
+      component={CategoryProducts}
+      options={{
+        headerTitle: "Products",
+        headerBackTitleStyle: {
+          color: themeColors.secondary,
+        },
+        headerTintColor: themeColors.secondary,
       }}
     />
   </HomeStack.Navigator>

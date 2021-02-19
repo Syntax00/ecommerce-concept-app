@@ -5,6 +5,8 @@ const PRODUCTS_APIS = {
     axios.get("/products", {
       params: filter,
     }),
+  getProductsByCategory: (categoryName: string) =>
+    axios.get(`/products/category/${categoryName}`),
 };
 
 export default PRODUCTS_APIS;

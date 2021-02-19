@@ -32,9 +32,10 @@ export default StyleSheet.create({
     overflow: "hidden",
   },
   productImage: {
-    width: 70,
-    height: 70,
+    width: 90,
+    height: 90,
     marginBottom: 13,
+    resizeMode: "contain",
   },
   title: {
     fontWeight: "500",
@@ -45,6 +46,6 @@ export default StyleSheet.create({
     fontWeight: "700",
     fontSize: 14,
     color: themeColors.black,
-    marginVertical: 5
+    marginVertical: 5,
   },
 });

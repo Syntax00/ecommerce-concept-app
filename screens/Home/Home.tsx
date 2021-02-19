@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RefreshControl, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-import AppCarousel from "../../components/UIElements/AppCarousel/AppCarousel";
+import ProductsCarousel from "../../components/UIElements/ProductsCarousel/ProductsCarousel";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CustomSafeAreaView from "../../components/UIElements/CustomSafeAreaView";
 import PageContainer from "../../components/UIElements/PageContainer";
@@ -38,21 +38,19 @@ const HomeContent = ({ latestProducts }: { latestProducts: ProductType[] }) => {
     })();
   }, []);
 
-  if (categoriesLoading) return <Loader message="Loading Categories" />;
-
   return (
-    <View>
-      <Categories data={categoriesData} />
-      <Separator />
-
+    <View style={{ paddingBottom: 40 }}>
+      <View style={{ marginBottom: 20 }}>
+        <Categories data={categoriesData} />
+      </View>
       <PageContainer>
         <View style={styles.carouselContainer}>
-          <AppCarousel items={latestProducts} />
+          <ProductsCarousel items={latestProducts} />
         </View>
-        
+
         <Separator />
       </PageContainer>
-      
+
       <LatestProducts data={latestProducts} />
     </View>
   );
@@ -71,27 +69,28 @@ const Home = () => {
         <SearchBar />
       </PageContainer>
 
-      <ScrollView
-        contentContainerStyle={{ paddingBottom: 40 }}
-        showsVerticalScrollIndicator={false}
-        refreshControl={
-          <RefreshControl
-            refreshing={refresh}
-            onRefresh={() => setRefresh(true)}
-          />
-        }
-      >
+      <View style={{ flex: 1 }}>
         <WithNetworkCall
           promiseFunc={() =>
             PRODUCTS_APIS.getAllProducts({ sort: "desc", limit: 5 })
           }
           idleMessage="Loading Products"
           OnSuccessComponent={({ data }: { data: ProductType[] }) => (
-            <HomeContent latestProducts={data} />
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              refreshControl={
+                <RefreshControl
+                  refreshing={refresh}
+                  onRefresh={() => setRefresh(true)}
+                />
+              }
+            >
+              <HomeContent latestProducts={data} />
+            </ScrollView>
           )}
           deps={[refresh]}
         />
-      </ScrollView>
+      </View>
     </CustomSafeAreaView>
   );
 };

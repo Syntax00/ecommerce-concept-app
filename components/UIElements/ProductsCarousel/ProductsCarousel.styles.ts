@@ -18,9 +18,20 @@ export default StyleSheet.create({
     fontWeight: "700",
     marginBottom: 5,
   },
-  image: { width: "100%", height: 0.25 * dimensions.windowHeight },
+  image: { width: "100%", height: 0.23 * dimensions.windowHeight },
   description: {
     fontSize: 11,
     fontWeight: "100",
+  },
+  salePatch: {
+    backgroundColor: themeColors.black,
+    padding: 5,
+    paddingHorizontal: 10,
+    color: themeColors.white,
+    width: "35%",
+    textAlign: "center",
+    fontWeight: "900",
+    borderRadius: 3,
+    overflow: "hidden",
   },
 });

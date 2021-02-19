@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     backgroundColor: themeColors.gray,
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 0.35 * dimensions.windowHeight,
   },
   messageText: {
     color: themeColors.secondary,

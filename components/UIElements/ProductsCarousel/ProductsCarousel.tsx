@@ -6,7 +6,7 @@ import CustomText from "../CustomText";
 
 import { dimensions } from "../../../utilities/common";
 
-import styles from "./AppCarousel.styles";
+import styles from "./ProductsCarousel.styles";
 
 const _renderItem = ({ item }: { item: ProductType }) => {
   const { image, title, description } = item;
@@ -15,19 +15,20 @@ const _renderItem = ({ item }: { item: ProductType }) => {
     <View style={styles.slide}>
       <Image source={{ uri: image }} style={styles.image} />
       <View style={styles.slideContent}>
+        <CustomText style={styles.salePatch}>60% SALE</CustomText>
         <CustomText style={styles.title}>
           {title && title.toUpperCase()}
         </CustomText>
 
         <CustomText style={styles.description}>
-          {description.slice(0, 200)}
+          {description.slice(0, 150)}
         </CustomText>
       </View>
     </View>
   );
 };
 
-const AppCarousel = ({ items = [] }: { items: ProductType[] }) => {
+const ProductsCarousel = ({ items = [] }: { items: ProductType[] }) => {
   const cRef = useRef(null);
 
   return (
@@ -43,4 +44,4 @@ const AppCarousel = ({ items = [] }: { items: ProductType[] }) => {
   );
 };
 
-export default AppCarousel;
+export default ProductsCarousel;

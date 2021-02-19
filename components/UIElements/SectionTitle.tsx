@@ -5,12 +5,22 @@ import CustomText from "./CustomText";
 
 import { themeColors } from "../../utilities/common";
 
-const SectionTitle = ({ children }: { children: string }) => {
+const SectionTitle = ({
+  children,
+  containerStyle,
+  lineStyle,
+  textStyle,
+}: {
+  children: string;
+  containerStyle?: any;
+  lineStyle?: any;
+  textStyle?: any;
+}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       <CustomText style={styles.title}>{children}</CustomText>
 
-      <View style={styles.underline} />
+      <View style={[styles.underline, lineStyle]} />
     </View>
   );
 };
@@ -21,7 +31,7 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
   title: {
-    fontSize: 23,
+    fontSize: 26,
     fontWeight: "500",
     color: themeColors.black,
   },
