@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
+    "@types/expo__vector-icons": "9.0.1",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
     "@types/react-redux": "7.1.15",

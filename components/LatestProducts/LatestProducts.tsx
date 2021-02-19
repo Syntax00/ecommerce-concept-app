@@ -4,13 +4,19 @@ import { Image, View, ScrollView, TouchableOpacity } from "react-native";
 import SectionTitle from "../UIElements/SectionTitle";
 import CustomText from "../UIElements/CustomText";
 
+import { navigate } from "../../navigation/navigationService";
+
 import styles from "./LatestProducts.styles";
 
 const LatestProductCard = ({ data }: { data: ProductType }) => {
-  const { title, price, image } = data || {};
+  const { title, price, image, id } = data || {};
+  const routeToProductDetails = () => navigate("ProductDetails", { id });
 
   return (
-    <TouchableOpacity style={styles.productCardContainer}>
+    <TouchableOpacity
+      style={styles.productCardContainer}
+      onPress={routeToProductDetails}
+    >
       <View style={styles.newPatchWrapper}>
         <CustomText style={styles.newPatch}>New</CustomText>
       </View>

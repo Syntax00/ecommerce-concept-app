@@ -12,7 +12,7 @@ export default StyleSheet.create({
     alignItems: "center",
     borderRadius: 10,
     borderBottomWidth: 5,
-    borderColor: themeColors.gray1
+    borderColor: themeColors.gray1,
   },
   productThumbnailWrapper: {
     width: "30%",
@@ -22,7 +22,7 @@ export default StyleSheet.create({
   productThumbnail: {
     height: 80,
     width: 80,
-    resizeMode: 'contain'
+    resizeMode: "contain",
   },
   productInfoWrapper: {
     padding: 14,
@@ -34,5 +34,10 @@ export default StyleSheet.create({
   },
   productDescription: {
     fontSize: 14,
+  },
+  price: {
+    fontWeight: "700",
+    color: themeColors.primary,
+    marginTop: 10,
   },
 });

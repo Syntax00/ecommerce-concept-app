@@ -6,7 +6,7 @@ const CustomText = ({
   style,
   ...props
 }: {
-  children: string;
+  children: string | number | undefined;
   style?: any;
 }) => (
   <Text

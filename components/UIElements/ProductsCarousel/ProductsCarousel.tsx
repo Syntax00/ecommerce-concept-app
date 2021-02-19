@@ -1,20 +1,25 @@
 import React, { useRef } from "react";
 import Carousel from "react-native-snap-carousel";
-import { View, Image } from "react-native";
+import { View, Image, TouchableOpacity } from "react-native";
 
 import CustomText from "../CustomText";
 
 import { dimensions } from "../../../utilities/common";
+import { navigate } from "../../../navigation/navigationService";
 
 import styles from "./ProductsCarousel.styles";
 
 const _renderItem = ({ item }: { item: ProductType }) => {
-  const { image, title, description } = item;
+  const { image, title, description, id } = item;
+  const routeToProductDetails = () => navigate("ProductDetails", { id });
 
   return (
     <View style={styles.slide}>
       <Image source={{ uri: image }} style={styles.image} />
-      <View style={styles.slideContent}>
+      <TouchableOpacity
+        style={styles.slideContent}
+        onPress={routeToProductDetails}
+      >
         <CustomText style={styles.salePatch}>60% SALE</CustomText>
         <CustomText style={styles.title}>
           {title && title.toUpperCase()}
@@ -23,7 +28,7 @@ const _renderItem = ({ item }: { item: ProductType }) => {
         <CustomText style={styles.description}>
           {description.slice(0, 150)}
         </CustomText>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

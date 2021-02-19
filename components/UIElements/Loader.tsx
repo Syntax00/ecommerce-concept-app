@@ -4,7 +4,7 @@ import { Fold } from "react-native-animated-spinkit";
 
 import CustomText from "./CustomText";
 
-import { dimensions, themeColors } from "../../utilities/common";
+import { themeColors } from "../../utilities/common";
 
 const Loader = ({ message }: { message?: string }) => {
   return (

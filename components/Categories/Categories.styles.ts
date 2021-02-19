@@ -16,8 +16,8 @@ export default StyleSheet.create({
     borderRadius: 7,
   },
   categoryImage: {
-    width: 40,
-    height: 40,
+    width: 35,
+    height: 35,
     marginRight: 10
   },
   categoryTitle: {

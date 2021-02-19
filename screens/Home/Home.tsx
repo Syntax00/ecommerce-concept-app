@@ -10,15 +10,23 @@ import Categories from "../../components/Categories/Categories";
 import Separator from "../../components/UIElements/Separator";
 import LatestProducts from "../../components/LatestProducts/LatestProducts";
 import WithNetworkCall from "../../components/WithNetworkCall/WithNetworkCall";
-import Loader from "../../components/UIElements/Loader";
 
 import PRODUCTS_APIS from "../../Networking/productsAPIs";
 import { fetchCategories } from "../../store/slices/categories";
 import { fetchUserData } from "../../store/slices/user";
+import usePullToRefresh from "../../hooks/usePullToRefresh";
 
 import styles from "./Home.styles";
 
-const HomeContent = ({ latestProducts }: { latestProducts: ProductType[] }) => {
+const HomeContent = ({
+  latestProducts,
+  handleRefresh,
+  refresh,
+}: {
+  latestProducts: ProductType[];
+  handleRefresh: any;
+  refresh: any;
+}) => {
   const {
     categoriesState: {
       data: categoriesData,
@@ -39,29 +47,36 @@ const HomeContent = ({ latestProducts }: { latestProducts: ProductType[] }) => {
   }, []);
 
   return (
-    <View style={{ paddingBottom: 40 }}>
-      <View style={{ marginBottom: 20 }}>
-        <Categories data={categoriesData} />
-      </View>
-      <PageContainer>
-        <View style={styles.carouselContainer}>
-          <ProductsCarousel items={latestProducts} />
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl
+          refreshing={refresh}
+          onRefresh={() => handleRefresh(true)}
+        />
+      }
+    >
+      <View style={{ paddingBottom: 40 }}>
+        <View style={{ marginBottom: 20 }}>
+          <Categories data={categoriesData} />
         </View>
 
-        <Separator />
-      </PageContainer>
+        <PageContainer>
+          <View style={styles.carouselContainer}>
+            <ProductsCarousel items={latestProducts} />
+          </View>
 
-      <LatestProducts data={latestProducts} />
-    </View>
+          <Separator />
+        </PageContainer>
+
+        <LatestProducts data={latestProducts} />
+      </View>
+    </ScrollView>
   );
 };
 
 const Home = () => {
-  const [refresh, setRefresh] = useState(false);
-
-  useEffect(() => {
-    setRefresh(false);
-  }, [refresh]);
+  const [refresh, setRefresh] = usePullToRefresh();
 
   return (
     <CustomSafeAreaView>
@@ -76,17 +91,11 @@ const Home = () => {
           }
           idleMessage="Loading Products"
           OnSuccessComponent={({ data }: { data: ProductType[] }) => (
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              refreshControl={
-                <RefreshControl
-                  refreshing={refresh}
-                  onRefresh={() => setRefresh(true)}
-                />
-              }
-            >
-              <HomeContent latestProducts={data} />
-            </ScrollView>
+            <HomeContent
+              latestProducts={data}
+              handleRefresh={setRefresh}
+              refresh={refresh}
+            />
           )}
           deps={[refresh]}
         />
