@@ -53,7 +53,7 @@ const ProductCard = ({ data }: { data: ProductType }) => {
 
 const CategoryProducts = ({ route }: { route: any }) => {
   const [refresh, setRefresh] = useState(false);
-  const { categoryId } = route.params;
+  const { categoryId = "" } = route.params;
   const categoryName = categoryId[0].toUpperCase() + categoryId.slice(1);
 
   useEffect(() => {
