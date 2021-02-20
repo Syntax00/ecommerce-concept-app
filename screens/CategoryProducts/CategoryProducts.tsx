@@ -88,7 +88,6 @@ const CategoryProducts = ({ route }: { route: any }) => {
   return (
     <WithNetworkCall
       promiseFunc={() => PRODUCTS_APIS.getProductsByCategory(categoryId)}
-      idleMessage={`Loading Products in ${categoryName}`}
       OnSuccessComponent={({ data = [] }: { data: ProductType[] }) => (
         <CategryProductsView
           data={data}

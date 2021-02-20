@@ -89,7 +89,6 @@ const Home = () => {
           promiseFunc={() =>
             PRODUCTS_APIS.getAllProducts({ sort: "desc", limit: 5 })
           }
-          idleMessage="Loading Products"
           OnSuccessComponent={({ data }: { data: ProductType[] }) => (
             <HomeContent
               latestProducts={data}

@@ -24,7 +24,7 @@ const WithAPIAccess = ({
     retrieveSuccessData
   );
   
-  if (loading) return <Loader message={idleMessage} />;
+  if (loading) return <Loader secondary message={idleMessage} />;
   if (error) return <CustomText>Error ...</CustomText>;
 
   return <OnSuccessComponent data={data} />;

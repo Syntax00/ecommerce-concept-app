@@ -76,7 +76,6 @@ const ProductDetails = ({ route }: { route: any }) => {
   return (
     <WithNetworkCall
       promiseFunc={() => PRODUCTS_APIS.getProduct(id)}
-      idleMessage="Loading Product Details"
       OnSuccessComponent={({ data }: { data: ProductType }) => (
         <ProductDetailsView
           data={data}
