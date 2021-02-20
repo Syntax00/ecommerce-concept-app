@@ -9,6 +9,8 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import PRODUCTS_APIS from "../../Networking/productsAPIs";
 import usePullToRefresh from "../../hooks/usePullToRefresh";
 
+import styles from "./CategoryProducts.styles";
+
 const CategryProductsView = ({
   data,
   categoryName,
@@ -31,9 +33,7 @@ const CategryProductsView = ({
       data={data}
       keyExtractor={({ id }: { id: string }) => String(id)}
       ListHeaderComponent={() => (
-        <SectionTitle
-          containerStyle={{ marginTop: 35 }}
-        >{`${categoryName} Products`}</SectionTitle>
+        <SectionTitle containerStyle={styles.title}>{`${categoryName} Products`}</SectionTitle>
       )}
       renderItem={({ item }: { item: any }) => <ProductCard data={item} />}
       onEndReachedThreshold={Platform.OS === "ios" ? 0 : 1}

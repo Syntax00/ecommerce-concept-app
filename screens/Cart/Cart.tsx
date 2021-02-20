@@ -6,6 +6,8 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import PageContainer from "../../components/UIElements/PageContainer";
 import SectionTitle from "../../components/UIElements/SectionTitle";
 
+import styles from "./Cart.styles";
+
 const Cart = () => {
   const { cart: cartState } = useSelector((state: RootStateOrAny) => state);
   const cartProductsList = Object.values(cartState);
@@ -15,9 +17,7 @@ const Cart = () => {
       <FlatList
         data={cartProductsList}
         keyExtractor={({ id }: { id: string }) => String(id)}
-        ListHeaderComponent={() => (
-          <SectionTitle containerStyle={{ marginTop: 35 }}>My Bag</SectionTitle>
-        )}
+        ListHeaderComponent={() => <SectionTitle containerStyle={styles.title}>My Bag</SectionTitle>}
         renderItem={({ item }: { item: any }) => <ProductCard data={item} />}
         onEndReachedThreshold={Platform.OS === "ios" ? 0 : 1}
         showsVerticalScrollIndicator={false}
