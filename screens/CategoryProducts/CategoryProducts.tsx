@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import CustomSafeAreaView from "../../components/UIElements/CustomSafeAreaView";
 import PageContainer from "../../components/UIElements/PageContainer";
 import WithNetworkCall from "../../components/WithNetworkCall/WithNetworkCall";
 import CustomText from "../../components/UIElements/CustomText";

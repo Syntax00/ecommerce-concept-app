@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { RefreshControl, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -56,8 +56,8 @@ const HomeContent = ({
         />
       }
     >
-      <View style={{ paddingBottom: 40 }}>
-        <View style={{ marginBottom: 20 }}>
+      <View style={styles.content}>
+        <View style={styles.categoriesWrapper}>
           <Categories data={categoriesData} />
         </View>
 
@@ -84,7 +84,7 @@ const Home = () => {
         <SearchBar />
       </PageContainer>
 
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <WithNetworkCall
           promiseFunc={() =>
             PRODUCTS_APIS.getAllProducts({ sort: "desc", limit: 5 })
