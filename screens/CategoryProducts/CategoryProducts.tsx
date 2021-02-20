@@ -5,6 +5,7 @@ import PageContainer from "../../components/UIElements/PageContainer";
 import WithNetworkCall from "../../components/WithNetworkCall/WithNetworkCall";
 import SectionTitle from "../../components/UIElements/SectionTitle";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import EmptyStatePlaceholder from "../../components/UIElements/EmptyStatePlaceholder/EmptyStatePlaceholder";
 
 import PRODUCTS_APIS from "../../Networking/productsAPIs";
 import usePullToRefresh from "../../hooks/usePullToRefresh";
@@ -21,26 +22,33 @@ const CategryProductsView = ({
   categoryName: string;
   handleRefresh: any;
   refresh: any;
-}) => (
-  <PageContainer>
-    <FlatList
-      refreshControl={
-        <RefreshControl
-          refreshing={refresh}
-          onRefresh={() => handleRefresh(true)}
-        />
-      }
-      data={data}
-      keyExtractor={({ id }: { id: string }) => String(id)}
-      ListHeaderComponent={() => (
-        <SectionTitle containerStyle={styles.title}>{`${categoryName} Products`}</SectionTitle>
-      )}
-      renderItem={({ item }: { item: any }) => <ProductCard data={item} />}
-      onEndReachedThreshold={Platform.OS === "ios" ? 0 : 1}
-      showsVerticalScrollIndicator={false}
-    />
-  </PageContainer>
-);
+}) => {
+  if (!data.length)
+    return <EmptyStatePlaceholder message="No Products Were Found" />;
+
+  return (
+    <PageContainer>
+      <FlatList
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => handleRefresh(true)}
+          />
+        }
+        data={data}
+        keyExtractor={({ id }: { id: string }) => String(id)}
+        ListHeaderComponent={() => (
+          <SectionTitle
+            containerStyle={styles.title}
+          >{`${categoryName} Products`}</SectionTitle>
+        )}
+        renderItem={({ item }: { item: any }) => <ProductCard data={item} />}
+        onEndReachedThreshold={Platform.OS === "ios" ? 0 : 1}
+        showsVerticalScrollIndicator={false}
+      />
+    </PageContainer>
+  );
+};
 
 const CategoryProducts = ({ route }: { route: any }) => {
   const [refresh, setRefresh] = usePullToRefresh();

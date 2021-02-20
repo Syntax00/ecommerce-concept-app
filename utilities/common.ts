@@ -23,6 +23,8 @@ const images = {
   "men clothing": require("../assets/images/male-clothes.png"),
   jewelery: require("../assets/images/earrings.png"),
   electronics: require("../assets/images/electronics.png"),
+  emptyState: require("../assets/images/empty-state.png"),
+  emptyCart: require("../assets/images/empty-cart.png"),
 };
 const fonts = {
   "OpenSans-100": require("../assets/fonts/OpenSans-Light.ttf"),
