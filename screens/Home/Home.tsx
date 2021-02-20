@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { RefreshControl, ScrollView, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 import ProductsCarousel from "../../components/UIElements/ProductsCarousel/ProductsCarousel";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -33,7 +33,7 @@ const HomeContent = ({
       loading: categoriesLoading,
       error: categoriesError,
     },
-  } = useSelector((state: any) => ({
+  } = useSelector((state: RootStateOrAny) => ({
     categoriesState: state.categories,
     userState: state.user,
   }));

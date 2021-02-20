@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Image, RefreshControl, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import { useDispatch } from "react-redux";
+
 import CustomText from "../../components/UIElements/CustomText";
 import PageContainer from "../../components/UIElements/PageContainer";
 import CustomButton from "../../components/UIElements/CustomButton/CustomButton";
-
 import WithNetworkCall from "../../components/WithNetworkCall/WithNetworkCall";
+
 import usePullToRefresh from "../../hooks/usePullToRefresh";
 import PRODUCTS_APIS from "../../Networking/productsAPIs";
 import { formateCategoryName, formatePrice } from "../../utilities/helpers";
+import { actions as cartActions } from "../../store/slices/cart";
 
 import styles from "./ProductDetails.styles";
 
 const ProductDetailsView = ({
-  data: { category, price, image, title, description },
+  data,
   handleRefresh,
   refresh,
 }: {
@@ -21,8 +24,15 @@ const ProductDetailsView = ({
   handleRefresh: any;
   refresh: any;
 }) => {
+  const dispatch = useDispatch();
+  
+  const { category, price, image, title, description } = data;
   const categoryName = formateCategoryName(category);
   const formattedPrice = formatePrice(price);
+  const addProductToCart = useCallback(
+    () => dispatch(cartActions.add(data)),
+    []
+  );
 
   return (
     <ScrollView
@@ -61,7 +71,7 @@ const ProductDetailsView = ({
           <CustomButton
             label="Add to Cart"
             icon="shopping-cart"
-            pressAction={() => alert("ttt")}
+            pressAction={addProductToCart}
           />
         </View>
       </PageContainer>

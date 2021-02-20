@@ -10,6 +10,7 @@ interface ButtomType {
   action: () => void;
   icon: string;
   id?: number;
+  count?: number;
 }
 
 type unaryFunction = (x: any) => void;

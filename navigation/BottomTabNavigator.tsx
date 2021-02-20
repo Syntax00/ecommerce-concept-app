@@ -6,6 +6,7 @@ import Home from "../screens/Home/Home";
 import Profile from "../screens/Profile/Profile";
 import TabBarIcon from "./TabBarIcon";
 import CategoryProducts from "../screens/CategoryProducts/CategoryProducts";
+import Cart from "../screens/Cart/Cart";
 import ProductDetails from "../screens/ProductDetails/ProductDetails";
 
 import {
@@ -30,9 +31,13 @@ const HomeNavigator = () => (
     />
     <HomeStack.Screen
       name="Cart"
-      component={Profile}
+      component={Cart}
       options={{
         headerTitle: "My Bag",
+        headerBackTitleStyle: {
+          color: themeColors.secondary,
+        },
+        headerTintColor: themeColors.secondary,
       }}
     />
     <HomeStack.Screen

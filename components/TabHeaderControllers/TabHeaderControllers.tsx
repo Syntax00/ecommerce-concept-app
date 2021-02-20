@@ -10,8 +10,8 @@ const TabHeaderControllers = ({
 }: {
   controllers: ButtomType[];
 }) => {
-  const controllersJSX = controllers.map(({ action, icon, id }) => (
-    <CircularButton action={action} icon={icon} key={id} />
+  const controllersJSX = controllers.map(({ action, icon, id, count }) => (
+    <CircularButton action={action} icon={icon} key={id} count={count} />
   ));
 
   return <View style={styles.wrapper}>{controllersJSX}</View>;

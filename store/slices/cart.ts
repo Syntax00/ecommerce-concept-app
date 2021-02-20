@@ -1,14 +1,20 @@
+import _get from "lodash/get";
 import { createSlice } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState: [],
+  initialState: {},
   reducers: {
-    add: (state: ProductType[], action: { payload: ProductType }) => {
-      state.push(action.payload);
+    add: (state: any, action: { payload: ProductType }) => {
+      const { id: productId } = action.payload;
+      if (state[productId]) return;
+
+      state[productId] = action.payload;
     },
-    remove: (state: ProductType[]) => {
-      state.pop();
+    remove: (state: any, action: { payload: ProductType }) => {
+      const { id: productId } = action.payload;
+
+      delete state[productId];
     },
   },
 });

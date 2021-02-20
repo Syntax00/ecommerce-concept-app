@@ -1,51 +1,13 @@
 import React from "react";
-import {
-  Image,
-  Platform,
-  RefreshControl,
-  View,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
+import { Platform, RefreshControl, FlatList } from "react-native";
 
 import PageContainer from "../../components/UIElements/PageContainer";
 import WithNetworkCall from "../../components/WithNetworkCall/WithNetworkCall";
-import CustomText from "../../components/UIElements/CustomText";
 import SectionTitle from "../../components/UIElements/SectionTitle";
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 import PRODUCTS_APIS from "../../Networking/productsAPIs";
-import { navigate } from "../../navigation/navigationService";
 import usePullToRefresh from "../../hooks/usePullToRefresh";
-import { formatePrice } from "../../utilities/helpers";
-
-import styles from "./CategoryProducts.styles";
-
-const ProductCard = ({ data }: { data: ProductType }) => {
-  const { image, title, description, price, id } = data;
-  const routeToProductDetails = () => navigate("ProductDetails", { id });
-  const formattedPrice = formatePrice(price);
-
-  return (
-    <TouchableOpacity
-      style={styles.cardContainer}
-      onPress={routeToProductDetails}
-    >
-      <View style={styles.productThumbnailWrapper}>
-        <Image source={{ uri: image }} style={styles.productThumbnail} />
-      </View>
-
-      <View style={styles.productInfoWrapper}>
-        <CustomText style={styles.productTitle}>{title}</CustomText>
-        <CustomText style={styles.productDescription}>
-          {description.slice(0, 70)}
-        </CustomText>
-        <CustomText
-          style={styles.price}
-        >{`Price: ${formattedPrice}`}</CustomText>
-      </View>
-    </TouchableOpacity>
-  );
-};
 
 const CategryProductsView = ({
   data,
