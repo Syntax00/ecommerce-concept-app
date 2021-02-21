@@ -15,3 +15,7 @@ interface ButtomType {
 
 type unaryFunction = (x: any) => void;
 type binaryFunction = (x: any, y: any) => void;
+
+interface IObjectKeys {
+  [key: number]: string | number;
+}

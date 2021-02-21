@@ -1,5 +1,8 @@
 import { useEffect, useReducer } from "react";
 
+import errorsMap from "../utilities/errorsMap";
+import { showToastMessage } from "../utilities/helpers";
+
 function useServerCall(
   resolvePromise: () => void,
   deps: any[],
@@ -13,7 +16,7 @@ function useServerCall(
       data: null,
     }
   );
-  
+
   useEffect(() => {
     (async () => {
       try {
@@ -29,11 +32,16 @@ function useServerCall(
           error,
           loading: false,
         });
+
+        return showToastMessage(
+          "danger",
+          errorsMap[error.status] || error.message
+        );
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
-  
+
   return state;
 }
 

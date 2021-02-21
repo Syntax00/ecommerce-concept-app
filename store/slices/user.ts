@@ -1,10 +1,25 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import USER_APIS from "../../Networking/userAPIs";
+import errorsMap from "../../utilities/errorsMap";
+import { showToastMessage } from "../../utilities/helpers";
 
 export const fetchUserData = createAsyncThunk(
   "user/getUser",
-  async () => await USER_APIS.getCurrentUser()
+  async (_, { rejectWithValue }) => {
+    try {
+      const userData = await USER_APIS.getCurrentUser();
+
+      return userData;
+    } catch (e) {
+      showToastMessage(
+        "danger",
+        `Fetch User Data: ${errorsMap[e.status] || e.message}`
+      );
+
+      return rejectWithValue(e.response.data);
+    }
+  }
 );
 
 const userSlice = createSlice({
@@ -12,15 +27,15 @@ const userSlice = createSlice({
   initialState: { data: {}, loading: false, error: false },
   reducers: {},
   extraReducers: {
-    [fetchUserData.pending]: (state) => {
+    [fetchUserData.pending.toString()]: (state) => {
       state.loading = true;
       state.error = false;
     },
-    [fetchUserData.fulfilled]: (state, action) => {
+    [fetchUserData.fulfilled.toString()]: (state, action) => {
       state.loading = false;
       state.data = action.payload;
     },
-    [fetchUserData.rejected]: (state) => {
+    [fetchUserData.rejected.toString()]: (state) => {
       state.loading = false;
       state.error = true;
     },

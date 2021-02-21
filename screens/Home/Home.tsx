@@ -27,16 +27,9 @@ const HomeContent = ({
   handleRefresh: any;
   refresh: any;
 }) => {
-  const {
-    categoriesState: {
-      data: categoriesData,
-      loading: categoriesLoading,
-      error: categoriesError,
-    },
-  } = useSelector((state: RootStateOrAny) => ({
-    categoriesState: state.categories,
-    userState: state.user,
-  }));
+  const { data: categoriesData = [] } = useSelector(
+    (state: RootStateOrAny) => state.categories
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {

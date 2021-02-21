@@ -1,4 +1,5 @@
 import axios from "axios";
+import _get from "lodash/get";
 
 const instance = axios.create({
   baseURL: `https://fakestoreapi.com`,
@@ -16,8 +17,11 @@ instance.interceptors.response.use(
   (response) => {
     return response.data;
   },
-  ({ response: { status, data } }) => {
-    return Promise.reject({ status, data });
+  (error) => {
+    const status = _get(error, "response.status");
+    const data = _get(error, "response.data");
+
+    return Promise.reject({ status, data, message: error.message });
   }
 );
 
