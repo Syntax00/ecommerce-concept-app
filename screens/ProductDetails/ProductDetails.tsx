@@ -58,7 +58,7 @@ const ProductDetailsView = ({
     <View style={styles.addedToCartMessage}>
       <FontAwesomeIcon name="check" style={styles.addedToCartIcon} />
       <CustomText style={styles.addedToCardTxt}>
-        Product is added to you Shopping Cart
+        Product is added to your Shopping Cart
       </CustomText>
     </View>
   );
