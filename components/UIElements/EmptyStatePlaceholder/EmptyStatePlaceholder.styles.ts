@@ -8,7 +8,7 @@ export default StyleSheet.create({
     width: 130,
     height: 130,
     resizeMode: "contain",
-    borderRadius: 65,
+    borderRadius: 100,
   },
   messageWrapper: {
     justifyContent: "center",
@@ -16,9 +16,9 @@ export default StyleSheet.create({
     marginVertical: 20,
   },
   message: {
-    fontSize: 18,
-    fontWeight: "500",
-    color: themeColors.secondary,
+    fontSize: 16,
+    fontWeight: "900",
+    color: themeColors.black,
   },
-  messageDescription: { color: themeColors.secondary },
+  messageDescription: { color: themeColors.gray5, fontSize: 13 },
 });

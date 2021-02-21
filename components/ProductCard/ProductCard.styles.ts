@@ -40,4 +40,16 @@ export default StyleSheet.create({
     color: themeColors.primary,
     marginTop: 10,
   },
+  removeBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "50%",
+    justifyContent: "center",
+    paddingVertical: 7,
+    paddingHorizontal: 10,
+    backgroundColor: "#f7f7f7",
+    marginVertical: 7,
+    borderRadius: 30,
+  },
+  removeIcon: { marginRight: 10 },
 });

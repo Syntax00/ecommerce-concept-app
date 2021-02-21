@@ -14,13 +14,13 @@ import styles from "./Cart.styles";
 const Cart = () => {
   const { cart: cartState } = useSelector((state: RootStateOrAny) => state);
   const cartProductsList = Object.values(cartState);
-  
+
   if (!cartProductsList.length)
     return (
       <EmptyStatePlaceholder
         message="YOUR CART IS EMPTY"
+        messageDescription="Start adding products to see them here"
         image={images.emptyCart}
-        messageDescription="Start adding products in order to purchase"
       />
     );
 
@@ -32,7 +32,7 @@ const Cart = () => {
         ListHeaderComponent={() => (
           <SectionTitle containerStyle={styles.title}>My Bag</SectionTitle>
         )}
-        renderItem={({ item }: { item: any }) => <ProductCard data={item} />}
+        renderItem={({ item }: { item: any }) => <ProductCard data={item} cartView />}
         onEndReachedThreshold={Platform.OS === "ios" ? 0 : 1}
         showsVerticalScrollIndicator={false}
       />

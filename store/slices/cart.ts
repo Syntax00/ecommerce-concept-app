@@ -11,10 +11,8 @@ const cartSlice = createSlice({
 
       state[productId] = action.payload;
     },
-    remove: (state: any, action: { payload: ProductType }) => {
-      const { id: productId } = action.payload;
-
-      delete state[productId];
+    remove: (state: any, action: { payload: number }) => {
+      delete state[action.payload];
     },
   },
 });
