@@ -10,8 +10,13 @@ import WithNetworkCall from "../../components/WithNetworkCall/WithNetworkCall";
 
 import usePullToRefresh from "../../hooks/usePullToRefresh";
 import PRODUCTS_APIS from "../../Networking/productsAPIs";
-import { formateCategoryName, formatePrice } from "../../utilities/helpers";
+import {
+  formateCategoryName,
+  formatePrice,
+  showToastMessage,
+} from "../../utilities/helpers";
 import { actions as cartActions } from "../../store/slices/cart";
+import { navigate } from "../../navigation/navigationService";
 
 import styles from "./ProductDetails.styles";
 
@@ -25,14 +30,19 @@ const ProductDetailsView = ({
   refresh: any;
 }) => {
   const dispatch = useDispatch();
-  
+
   const { category, price, image, title, description } = data;
   const categoryName = formateCategoryName(category);
   const formattedPrice = formatePrice(price);
-  const addProductToCart = useCallback(
-    () => dispatch(cartActions.add(data)),
-    []
-  );
+  const addProductToCart = useCallback(() => {
+    dispatch(cartActions.add(data));
+
+    return showToastMessage(
+      "success",
+      "Product has been successfully added to Cart. Click to view in Cart.",
+      () => navigate("Cart")
+    );
+  }, []);
 
   return (
     <ScrollView

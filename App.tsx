@@ -11,6 +11,7 @@ import useColorScheme from "./hooks/useColorScheme";
 import { isMountedRef } from "./navigation/navigationService";
 import { fonts, themeColors } from "./utilities/common";
 import store from "./store";
+import FlashMessage from "react-native-flash-message";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -30,6 +31,7 @@ export default function App() {
         <SafeAreaProvider>
           <Navigation colorScheme={colorScheme} />
           <StatusBar backgroundColor={themeColors.gray} />
+          <FlashMessage position="bottom" />
         </SafeAreaProvider>
       </Provider>
     );

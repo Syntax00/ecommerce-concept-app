@@ -1,3 +1,5 @@
+import { showMessage } from "react-native-flash-message";
+
 import { fromNullable } from "./fp_utils";
 
 const formateCategoryName = (name: string | undefined): any =>
@@ -14,5 +16,24 @@ const formateCategoryName = (name: string | undefined): any =>
     );
 
 const formatePrice = (price: number): string => `$${price.toString()}`;
+const showToastMessage = (
+  type:
+    | "none"
+    | "default"
+    | "info"
+    | "success"
+    | "danger"
+    | "warning"
+    | undefined,
+  message: string,
+  onClick?: () => void
+) =>
+  showMessage({
+    message,
+    type,
+    onPress: onClick,
+    duration: 3000,
+    icon: "auto",
+  });
 
-export { formateCategoryName, formatePrice };
+export { formateCategoryName, formatePrice, showToastMessage };

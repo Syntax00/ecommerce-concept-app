@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import CustomText from "../UIElements/CustomText";
 
 import { navigate } from "../../navigation/navigationService";
-import { formatePrice } from "../../utilities/helpers";
+import { formatePrice, showToastMessage } from "../../utilities/helpers";
 import { actions as cartActions } from "../../store/slices/cart";
 
 import styles from "./ProductCard.styles";
@@ -22,11 +22,13 @@ const ProductCard = ({
   const routeToProductDetails = () => navigate("ProductDetails", { id });
   const formattedPrice = formatePrice(price);
   const dispatch = useDispatch();
-  const removeFromCart = useCallback(
-    () => dispatch(cartActions.remove(id)),
-    []
-  );
   
+  const removeFromCart = useCallback(() => {
+    dispatch(cartActions.remove(id));
+
+    return showToastMessage("success", "Product has been removed from Cart.");
+  }, []);
+
   return (
     <TouchableOpacity
       style={styles.cardContainer}
