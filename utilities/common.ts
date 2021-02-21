@@ -25,6 +25,7 @@ const images = {
   electronics: require("../assets/images/electronics.png"),
   emptyState: require("../assets/images/empty-state.png"),
   emptyCart: require("../assets/images/empty-cart.png"),
+  userPlaceholder: require("../assets/images/user-placeholder.jpg"),
 };
 const fonts = {
   "OpenSans-100": require("../assets/fonts/OpenSans-Light.ttf"),

@@ -70,7 +70,6 @@ const ProfileNavigator = () => (
     <ProfileStack.Screen
       name="Profile"
       component={Profile}
-      options={{ headerTitle: "Tab Two Title" }}
     />
   </ProfileStack.Navigator>
 );

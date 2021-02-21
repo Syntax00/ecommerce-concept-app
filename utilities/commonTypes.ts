@@ -13,6 +13,22 @@ interface ButtomType {
   count?: number;
 }
 
+interface UserDataType {
+  address: {
+    city: string;
+    number: number;
+    street: string;
+    zipcode: string;
+    geolocation: object;
+  };
+  email: string;
+  id?: number;
+  name: { firstname: string; lastname: string };
+  password: string;
+  phone: string;
+  username: string;
+}
+
 type unaryFunction = (x: any) => void;
 type binaryFunction = (x: any, y: any) => void;
 
