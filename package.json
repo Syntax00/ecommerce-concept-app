@@ -30,6 +30,7 @@
     "expo-splash-screen": "~0.8.0",
     "expo-status-bar": "~1.0.3",
     "expo-web-browser": "~8.6.0",
+    "fiction-expo-restart": "1.0.9",
     "lodash": "4.17.20",
     "react": "16.13.1",
     "react-dom": "16.13.1",

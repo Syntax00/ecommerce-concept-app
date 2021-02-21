@@ -10,7 +10,7 @@ import styles from "./ProfileCard.styles";
 
 const ProfileCard = ({ user }: { user: UserDataType }) => {
   const {
-    address: { number: addressNumber, street, city },
+    address: { number: addressNumber, street, city } = {},
     username,
     email,
     name: { firstname, lastname } = {},

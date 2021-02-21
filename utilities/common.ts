@@ -5,7 +5,7 @@ const themeColors = {
   secondary: "#555",
   black: "#000",
   white: "#FFF",
-  green: "#0eba64",
+  green: "#5ddd9d",
   red: "#f23e4d",
   gray: "#f7f7f7",
   gray1: "#ececec",
