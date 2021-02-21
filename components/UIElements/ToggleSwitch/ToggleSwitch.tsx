@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Switch } from "react-native";
 import { themeColors } from "../../../utilities/common";
 import CustomText from "../CustomText";
@@ -12,7 +12,7 @@ const ToggleSwitch = ({
 }: {
   label: string;
   onChange: () => void;
-  initialValue: boolean;
+  initialValue: boolean | undefined;
 }) => {
   const [isEnabled, setIsEnabled] = useState(initialValue);
 
@@ -21,6 +21,10 @@ const ToggleSwitch = ({
 
     return setIsEnabled((previousState) => !previousState);
   };
+  
+  useEffect(() => {
+    setIsEnabled(initialValue);
+  }, [initialValue]);
 
   return (
     <View style={styles.container}>

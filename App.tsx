@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { Provider } from "react-redux";
 import React, { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import * as Permissions from "expo-permissions";
 
 import Navigation from "./navigation";
 
@@ -17,8 +18,13 @@ export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
   let [fontsLoaded] = useFonts(fonts);
-
+  const [, askForNotificationsPermission] = Permissions.usePermissions(
+    Permissions.NOTIFICATIONS
+  );
+  
   useEffect(() => {
+    askForNotificationsPermission();
+
     isMountedRef.current = true;
 
     return () => (isMountedRef.current = false);
