@@ -25,7 +25,7 @@ export default StyleSheet.create({
     backgroundColor: themeColors.primary,
     borderTopLeftRadius: 20,
     paddingVertical: 7,
-    marginTop: 10
+    marginTop: 10,
   },
   productPrice: {
     paddingHorizontal: 10,
@@ -55,5 +55,19 @@ export default StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 7,
     marginBottom: 40,
+  },
+  addedToCartMessage: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 10,
+  },
+  addedToCartIcon: {
+    color: themeColors.green,
+    fontSize: 16,
+    marginRight: 10,
+  },
+  addedToCardTxt: {
+    color: themeColors.green,
+    fontSize: 14,
   },
 });

@@ -1,7 +1,8 @@
 import React, { useCallback } from "react";
 import { Image, RefreshControl, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { useDispatch } from "react-redux";
+import { FontAwesome as FontAwesomeIcon } from "@expo/vector-icons";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 import CustomText from "../../components/UIElements/CustomText";
 import PageContainer from "../../components/UIElements/PageContainer";
@@ -31,9 +32,12 @@ const ProductDetailsView = ({
 }) => {
   const dispatch = useDispatch();
 
-  const { category, price, image, title, description } = data;
+  const { category, price, image, title, description, id } = data;
   const categoryName = formateCategoryName(category);
   const formattedPrice = formatePrice(price);
+  const { cart: cartState } = useSelector((state: RootStateOrAny) => state);
+  const productAddedToCart = cartState[id];
+
   const addProductToCart = useCallback(() => {
     dispatch(cartActions.add(data));
 
@@ -43,6 +47,21 @@ const ProductDetailsView = ({
       () => navigate("Cart")
     );
   }, []);
+
+  const cartController = !productAddedToCart ? (
+    <CustomButton
+      label="Add to Cart"
+      icon="shopping-cart"
+      pressAction={addProductToCart}
+    />
+  ) : (
+    <View style={styles.addedToCartMessage}>
+      <FontAwesomeIcon name="check" style={styles.addedToCartIcon} />
+      <CustomText style={styles.addedToCardTxt}>
+        Product is added to you Shopping Cart
+      </CustomText>
+    </View>
+  );
 
   return (
     <ScrollView
@@ -77,13 +96,7 @@ const ProductDetailsView = ({
           </CustomText>
         </View>
 
-        <View style={styles.addToCartWrapper}>
-          <CustomButton
-            label="Add to Cart"
-            icon="shopping-cart"
-            pressAction={addProductToCart}
-          />
-        </View>
+        <View style={styles.addToCartWrapper}>{cartController}</View>
       </PageContainer>
     </ScrollView>
   );
