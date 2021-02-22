@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, View } from "react-native";
 import { FontAwesome as FontAwesomeIcon } from "@expo/vector-icons";
+import _isEmpty from "lodash/isEmpty";
 
 import CustomText from "../UIElements/CustomText";
 
@@ -19,7 +20,7 @@ const ProfileCard = ({ user }: { user: UserDataType }) => {
   const fullName = `${firstname} ${lastname} ( ${username} )`;
   const fullAddress = `${addressNumber} - ${street} - ${city}`;
 
-  return (
+  return user && !_isEmpty(user) ? (
     <View style={styles.container}>
       <View style={styles.userPicWrapper}>
         <Image source={images.userPlaceholder} style={styles.userPic} />
@@ -49,7 +50,7 @@ const ProfileCard = ({ user }: { user: UserDataType }) => {
         </View>
       </View>
     </View>
-  );
+  ) : null;
 };
 
 export default ProfileCard;

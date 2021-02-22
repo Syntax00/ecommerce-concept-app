@@ -51,6 +51,7 @@ const handleDeeplinkRedirect = (url: string | undefined | null) => {
     if (productId?.id) navigate("ProductDetails", productId);
   }
 };
+
 export {
   formateCategoryName,
   formatePrice,

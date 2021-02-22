@@ -24,33 +24,15 @@ const MyTheme = {
   },
 };
 
-const Navigation = ({
-  colorScheme,
-  url,
-}: {
-  colorScheme: ColorSchemeName;
-  url?: string | undefined | null;
-}) => {
-  React.useEffect(() => {
-    (async () => {
-      try {
-        handleDeeplinkRedirect(url);
-      } catch (e) {
-        console.log({ e });
-      }
-    })();
-  }, [url]);
-
-  return (
-    <NavigationContainer
-      ref={navigationRef}
-      linking={LinkingConfiguration}
-      theme={colorScheme === "dark" ? DarkTheme : MyTheme}
-    >
-      <RootNavigator />
-    </NavigationContainer>
-  );
-};
+const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => (
+  <NavigationContainer
+    ref={navigationRef}
+    linking={LinkingConfiguration}
+    theme={colorScheme === "dark" ? DarkTheme : MyTheme}
+  >
+    <RootNavigator />
+  </NavigationContainer>
+);
 
 const RootNavigator = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>

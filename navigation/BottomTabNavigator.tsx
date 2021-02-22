@@ -66,6 +66,17 @@ const HomeNavigator = () => (
         headerTitleStyle: { alignSelf: "flex-start" },
       }}
     />
+    <ProfileStack.Screen
+      name="Profile"
+      component={Profile}
+      options={{
+        headerTitleStyle: { alignSelf: "flex-start" },
+        headerBackTitleStyle: {
+          color: themeColors.secondary,
+        },
+        headerTintColor: themeColors.secondary,
+      }}
+    />
   </HomeStack.Navigator>
 );
 

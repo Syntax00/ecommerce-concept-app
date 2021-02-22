@@ -16,9 +16,10 @@ const useDeeplinkRedirect = () => {
       setDeepURL(url);
     });
 
-    return Linking.removeEventListener("url", ({ url }) => {
-      setDeepURL(url);
-    });
+    return () =>
+      Linking.removeEventListener("url", ({ url }) => {
+        setDeepURL(url);
+      });
   }, []);
 
   return [deepURL];
