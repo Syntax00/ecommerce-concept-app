@@ -34,13 +34,13 @@ const SearchBar = () => {
             {
               id: 1,
               icon: "shopping-cart",
-              action: () => navigate("Cart", {}),
+              action: () => navigate("Cart"),
               count: cartItemsCount,
             },
             {
               id: 2,
-              icon: "bell",
-              action: () => navigate("Cart", {}),
+              icon: "cog",
+              action: () => navigate("Profile"),
             },
           ]}
         />

@@ -35,7 +35,7 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     padding: 10,
-    paddingRight: 15
+    paddingRight: 15,
   },
   addressIcon: {
     color: themeColors.primary,
@@ -44,6 +44,7 @@ export default StyleSheet.create({
   },
   addressLabel: {
     fontSize: 16,
+    textAlign: 'left'
   },
   addressesHeading: {
     flexDirection: "row",
