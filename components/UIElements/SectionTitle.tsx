@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: "500",
     color: themeColors.black,
-    alignSelf: "flex-start"
+    alignSelf: "flex-start",
+    textAlign: "left",
   },
   underline: {
     height: 4,
