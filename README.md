@@ -1,7 +1,9 @@
 # Ecommerce-Concept React Native App 
 
 ![Application Screenshot](https://i.imgur.com/Q1vnjDU.png)
-
+<p align="center"> 
+<img src="https://i.imgur.com/Q1vnjDU.png">
+</p>
 ## Used Technologies
 1. React / React Native
 2. TypeScript
@@ -16,7 +18,7 @@ npm i
 npm start
 ```
 Then, connect the simulator or the device and run the project through the Expo console.
-Or, scan QR code using the Expo Go client on physical phone (Android only), 
+Or, scan QR code using the Expo Go client on physical phone (Android only).
 
 ## Implemented Features
 1. Categories listing
