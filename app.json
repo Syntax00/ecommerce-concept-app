@@ -15,9 +15,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.tradeling.task",
@@ -29,7 +27,12 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.tradeling.task",
-      "versionCode": 1
+      "versionCode": 1,
+      "permissions": [
+        "LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
