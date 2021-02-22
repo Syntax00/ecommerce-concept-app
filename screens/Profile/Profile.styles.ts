@@ -4,6 +4,7 @@ import { themeColors } from "../../utilities/common";
 export default StyleSheet.create({
   container: {
     marginTop: 20,
+    marginBottom: 30
   },
   title: {
     fontSize: 20,
@@ -21,5 +22,23 @@ export default StyleSheet.create({
     borderBottomColor: themeColors.gray1,
     borderBottomWidth: 10,
     borderRadius: 12,
+  },
+  addressContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+  },
+  addressIcon: {
+    color: themeColors.primary,
+    fontSize: 16,
+    marginRight: 13,
+  },
+  addressLabel: {
+    fontSize: 16,
+  },
+  addressesHeading: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingRight: 10,
   },
 });

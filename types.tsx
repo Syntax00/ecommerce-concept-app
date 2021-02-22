@@ -17,4 +17,5 @@ export type HomeStackParamList = {
 
 export type ProfileParamList = {
   Profile: undefined;
+  AddAddress: undefined;
 };

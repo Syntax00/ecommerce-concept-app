@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "TradlingTask",
-    "slug": "TradlingTask",
+    "name": "Tradeling Task",
+    "slug": "tradeling-task",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -19,13 +19,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tradeling.task",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.tradeling.task",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/images/favicon.png"

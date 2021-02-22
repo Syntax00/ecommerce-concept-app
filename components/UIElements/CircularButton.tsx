@@ -10,7 +10,7 @@ const CircularButton = ({ action, icon, count }: ButtomType) => {
   return (
     <TouchableOpacity onPress={action} style={styles.controller}>
       <FontAwesomeIcon name={icon} style={styles.controllerIcon} />
-     
+
       {count && count > 0 ? (
         <View style={styles.count}>
           <CustomText style={styles.countTxt}>{count}</CustomText>
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: themeColors.gray,
+    backgroundColor: themeColors.white,
     margin: 3,
     borderRadius: 20,
   },

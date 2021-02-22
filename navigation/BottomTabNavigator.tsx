@@ -8,6 +8,7 @@ import TabBarIcon from "./TabBarIcon";
 import CategoryProducts from "../screens/CategoryProducts/CategoryProducts";
 import Cart from "../screens/Cart/Cart";
 import ProductDetails from "../screens/ProductDetails/ProductDetails";
+import AddAddress from "../screens/AddAddress/AddAddress";
 
 import {
   BottomTabParamList,
@@ -67,9 +68,17 @@ const HomeNavigator = () => (
 
 const ProfileNavigator = () => (
   <ProfileStack.Navigator>
+    <ProfileStack.Screen name="Profile" component={Profile} />
     <ProfileStack.Screen
-      name="Profile"
-      component={Profile}
+      name="AddAddress"
+      component={AddAddress}
+      options={{
+        headerTitle: "Add New Address",
+        headerBackTitleStyle: {
+          color: themeColors.secondary,
+        },
+        headerTintColor: themeColors.secondary,
+      }}
     />
   </ProfileStack.Navigator>
 );
