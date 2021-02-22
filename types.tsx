@@ -13,6 +13,8 @@ export type HomeStackParamList = {
   Cart: undefined;
   CategoryProducts: undefined;
   ProductDetails: undefined;
+  Profile: undefined;
+  AddAddress: undefined;
 };
 
 export type ProfileParamList = {

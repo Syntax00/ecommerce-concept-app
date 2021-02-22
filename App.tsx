@@ -4,16 +4,29 @@ import { Provider } from "react-redux";
 import React, { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import * as Permissions from "expo-permissions";
-
+import {
+  NavigationContainer,
+  DarkTheme,
+  DefaultTheme,
+} from "@react-navigation/native";
+import FlashMessage from "react-native-flash-message";
 import Navigation from "./navigation";
 
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
-import { isMountedRef } from "./navigation/navigationService";
+import { isMountedRef, navigationRef } from "./navigation/navigationService";
 import { fonts, themeColors } from "./utilities/common";
 import store from "./store";
-import FlashMessage from "react-native-flash-message";
 import useDeeplinkRedirect from "./hooks/useDeeplinkRedirect";
+import LinkingConfiguration from "./navigation/LinkingConfiguration";
+
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: themeColors.gray,
+  },
+};
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -22,6 +35,7 @@ export default function App() {
   const [, askForNotificationsPermission] = Permissions.usePermissions(
     Permissions.NOTIFICATIONS
   );
+  const [url] = useDeeplinkRedirect();
 
   useEffect(() => {
     askForNotificationsPermission();
@@ -30,7 +44,6 @@ export default function App() {
 
     return () => (isMountedRef.current = false);
   }, []);
-  const [url] = useDeeplinkRedirect();
 
   if (!isLoadingComplete || !fontsLoaded) {
     return null;
@@ -38,9 +51,15 @@ export default function App() {
     return (
       <Provider store={store}>
         <SafeAreaProvider>
-          <Navigation colorScheme={colorScheme} url={url} />
-          <StatusBar backgroundColor={themeColors.gray} />
-          <FlashMessage position="bottom" />
+          <NavigationContainer
+            ref={navigationRef}
+            linking={LinkingConfiguration}
+            theme={colorScheme === "dark" ? DarkTheme : MyTheme}
+          >
+            <Navigation url={url} />
+            <StatusBar backgroundColor={themeColors.gray} />
+            <FlashMessage position="bottom" />
+          </NavigationContainer>
         </SafeAreaProvider>
       </Provider>
     );

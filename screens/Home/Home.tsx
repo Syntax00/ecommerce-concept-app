@@ -19,8 +19,6 @@ import { fetchUserData } from "../../store/slices/user";
 import usePullToRefresh from "../../hooks/usePullToRefresh";
 
 import styles from "./Home.styles";
-import { handleDeeplinkRedirect } from "../../utilities/helpers";
-import useDeeplinkRedirect from "../../hooks/useDeeplinkRedirect";
 
 const HomeContent = ({ latestProducts }: { latestProducts: ProductType[] }) => {
   const {
@@ -67,17 +65,6 @@ const HomeContent = ({ latestProducts }: { latestProducts: ProductType[] }) => {
 
 const Home = () => {
   const [refresh, setRefresh] = usePullToRefresh();
-  const [url] = useDeeplinkRedirect();
-
-  useEffect(() => {
-    (async () => {
-      try {
-        handleDeeplinkRedirect(url);
-      } catch (e) {
-        console.log({ e });
-      }
-    })();
-  }, [url]);
 
   return (
     <CustomSafeAreaView>

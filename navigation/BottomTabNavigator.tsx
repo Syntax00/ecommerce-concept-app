@@ -66,7 +66,7 @@ const HomeNavigator = () => (
         headerTitleStyle: { alignSelf: "flex-start" },
       }}
     />
-    <ProfileStack.Screen
+    <HomeStack.Screen
       name="Profile"
       component={Profile}
       options={{
@@ -75,6 +75,18 @@ const HomeNavigator = () => (
           color: themeColors.secondary,
         },
         headerTintColor: themeColors.secondary,
+      }}
+    />
+    <HomeStack.Screen
+      name="AddAddress"
+      component={AddAddress}
+      options={{
+        headerTitle: "Add New Address",
+        headerBackTitleStyle: {
+          color: themeColors.secondary,
+        },
+        headerTintColor: themeColors.secondary,
+        headerTitleStyle: { alignSelf: "flex-start" },
       }}
     />
   </HomeStack.Navigator>
