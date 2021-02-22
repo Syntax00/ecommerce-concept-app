@@ -24,17 +24,18 @@ Or, scan QR code using the Expo Go client on physical phone (Android only).
 2. Featured products listing
 3. Category products listing
 4. View product details
-5. Add products to Cart
-6. Remove products from Cart
-7. Cart listing
-8. Products swiper
-9. User profile
-10. Toggle RTL direction
-11. Notifications & Location permissions control
-12. Addresses listing
-13. Add addresess
-14. Map view to select address location (defaults to user's current location)
-15. Searchbar UI (not functional)
+5. View product details though an external link/URL
+6. Add products to Cart
+7. Remove products from Cart
+8. Cart listing
+9. Products swiper
+10. User profile
+11. Toggle RTL direction
+12. Notifications & Location permissions control
+13. Addresses listing
+14. Add addresess
+15. Map view to select address location (defaults to user's current location)
+16. Searchbar UI (not functional)
 
 
 ## Project Structure
@@ -79,5 +80,14 @@ Or, scan QR code using the Expo Go client on physical phone (Android only).
         |-- fp_utils.ts (functional programming hand-made utilities)
         |-- helpers.ts (general functions)
 
+```
+
+
+## View Product Details Deeplink Scheme
+You can automatically open the app and get redirected to a specific product screen by using a link/URL (Deeplink).
+This link scheme should be as follows:
+
+```javascript
+tradelingapp://product?id=19
 ```
 
