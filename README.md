@@ -1,9 +1,8 @@
 # Ecommerce-Concept React Native App 
-
-![Application Screenshot](https://i.imgur.com/Q1vnjDU.png)
 <p align="center"> 
 <img src="https://i.imgur.com/Q1vnjDU.png">
 </p>
+
 ## Used Technologies
 1. React / React Native
 2. TypeScript
