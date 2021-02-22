@@ -1,6 +1,6 @@
 # Ecommerce-Concept React Native App 
 <p align="center"> 
-<img src="https://i.imgur.com/Q1vnjDU.png">
+<img src="https://i.imgur.com/HxOJjwA.png">
 </p>
 
 ## Used Technologies
@@ -25,17 +25,19 @@ Or, scan QR code using the Expo Go client on physical phone (Android only).
 3. Category products listing
 4. View product details
 5. View product details though an external link/URL
-6. Add products to Cart
-7. Remove products from Cart
-8. Cart listing
-9. Products swiper
-10. User profile
-11. Toggle RTL direction
-12. Notifications & Location permissions control
-13. Addresses listing
-14. Add addresess
-15. Map view to select address location (defaults to user's current location)
-16. Searchbar UI (not functional)
+6. Pull-to-refresh in most areas of the app
+7. Add products to Cart
+8. Remove products from Cart
+9. Cart listing
+10. Products swiper
+11. User profile
+12. Toggle RTL direction
+13. Notifications & Location permissions control
+14. Addresses listing
+15. Add addresess
+16. Map view to select address location (defaults to user's current location)
+17. Searchbar UI (not functional)
+18. Error and Empty states components and notifications
 
 
 ## Project Structure
