@@ -36,6 +36,7 @@
     "expo-web-browser": "~8.6.0",
     "fiction-expo-restart": "1.0.9",
     "lodash": "4.17.20",
+    "query-string": "6.14.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
