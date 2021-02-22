@@ -1,6 +1,6 @@
 # Ecommerce-Concept React Native App 
 <p align="center"> 
-<img src="https://i.imgur.com/Q1vnjDU.png">
+<img src="https://i.imgur.com/IN1rNtN.png">
 </p>
 
 ## Used Technologies
