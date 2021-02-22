@@ -1,6 +1,5 @@
 import { useEffect, useReducer } from "react";
 
-import errorsMap from "../utilities/errorsMap";
 import { showToastMessage } from "../utilities/helpers";
 
 function useServerCall(
@@ -33,10 +32,7 @@ function useServerCall(
           loading: false,
         });
 
-        return showToastMessage(
-          "danger",
-          errorsMap[error.status] || error.message
-        );
+        return showToastMessage("danger", error);
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps

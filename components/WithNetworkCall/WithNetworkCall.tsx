@@ -8,12 +8,14 @@ import useServerCall from "../../hooks/useServerCall";
 const WithAPIAccess = ({
   promiseFunc,
   OnSuccessComponent,
+  OnFailureComponent,
   retrieveSuccessData,
   deps = [],
   idleMessage = "",
 }: {
   promiseFunc: () => void;
   OnSuccessComponent: any;
+  OnFailureComponent?: any;
   retrieveSuccessData?: any;
   deps: any[];
   idleMessage?: string;
@@ -23,9 +25,14 @@ const WithAPIAccess = ({
     deps,
     retrieveSuccessData
   );
-  
+
   if (loading) return <Loader secondary message={idleMessage} />;
-  if (error) return <CustomText>Error ...</CustomText>;
+  if (error)
+    return (
+      <OnFailureComponent error={error} /> || (
+        <CustomText>{error}</CustomText>
+      )
+    );
 
   return <OnSuccessComponent data={data} />;
 };

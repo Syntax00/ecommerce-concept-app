@@ -1,6 +1,8 @@
 import { showMessage } from "react-native-flash-message";
+import _get from "lodash/get";
 
 import { fromNullable } from "./fp_utils";
+import errorsMap from "./errorsMap";
 
 const formateCategoryName = (name: string | undefined): any =>
   fromNullable(name, "No category's name found")
@@ -35,5 +37,16 @@ const showToastMessage = (
     duration: 3000,
     icon: "auto",
   });
+  
+const resolveNetworkError = (error: any): string => {
+  const status = _get(error, "response.status");
 
-export { formateCategoryName, formatePrice, showToastMessage };
+  return errorsMap[status] || error.message || "Something went wrong.";
+};
+
+export {
+  formateCategoryName,
+  formatePrice,
+  showToastMessage,
+  resolveNetworkError,
+};

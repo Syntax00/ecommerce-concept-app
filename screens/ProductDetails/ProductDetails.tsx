@@ -8,6 +8,7 @@ import CustomText from "../../components/UIElements/CustomText";
 import PageContainer from "../../components/UIElements/PageContainer";
 import CustomButton from "../../components/UIElements/CustomButton/CustomButton";
 import WithNetworkCall from "../../components/WithNetworkCall/WithNetworkCall";
+import ErrorStatePlaceholder from "../../components/UIElements/ErrorStatePlaceholder/ErrorStatePlaceholder";
 
 import usePullToRefresh from "../../hooks/usePullToRefresh";
 import PRODUCTS_APIS from "../../Networking/productsAPIs";
@@ -64,15 +65,7 @@ const ProductDetailsView = ({
   );
 
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      refreshControl={
-        <RefreshControl
-          refreshing={refresh}
-          onRefresh={() => handleRefresh(true)}
-        />
-      }
-    >
+    <View>
       <View style={styles.productImageWrapper}>
         <Image source={{ uri: image }} style={styles.productImage} />
 
@@ -98,7 +91,7 @@ const ProductDetailsView = ({
 
         <View style={styles.addToCartWrapper}>{cartController}</View>
       </PageContainer>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -107,17 +100,34 @@ const ProductDetails = ({ route }: { route: any }) => {
   const [refresh, setRefresh] = usePullToRefresh();
 
   return (
-    <WithNetworkCall
-      promiseFunc={() => PRODUCTS_APIS.getProduct(id)}
-      OnSuccessComponent={({ data }: { data: ProductType }) => (
-        <ProductDetailsView
-          data={data}
-          handleRefresh={setRefresh}
-          refresh={refresh}
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.container}
+      refreshControl={
+        <RefreshControl
+          refreshing={refresh}
+          onRefresh={() => setRefresh(true)}
         />
-      )}
-      deps={[refresh]}
-    />
+      }
+    >
+      <WithNetworkCall
+        promiseFunc={() => PRODUCTS_APIS.getProduct(id)}
+        OnSuccessComponent={({ data }: { data: ProductType }) => (
+          <ProductDetailsView
+            data={data}
+            handleRefresh={setRefresh}
+            refresh={refresh}
+          />
+        )}
+        OnFailureComponent={({ error }: { error: string }) => (
+          <ErrorStatePlaceholder
+            message={error}
+            messageDescription="Couldn't get product data, try reloading the page."
+          />
+        )}
+        deps={[refresh]}
+      />
+    </ScrollView>
   );
 };
 

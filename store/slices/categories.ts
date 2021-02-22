@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import CATEGORIES_APIS from "../../Networking/categoriesAPIs";
-import errorsMap from "../../utilities/errorsMap";
 import { showToastMessage } from "../../utilities/helpers";
 
 export const fetchCategories = createAsyncThunk(
@@ -12,29 +11,29 @@ export const fetchCategories = createAsyncThunk(
 
       return categories;
     } catch (e) {
-      showToastMessage("danger", `Fetch Categories: ${errorsMap[e.status] || e.message}`);
+      showToastMessage("danger", `Fetch Categories: ${e}`);
 
-      return rejectWithValue(e.response.data);
+      return rejectWithValue(e);
     }
   }
 );
 
 const categoriesSlice = createSlice({
   name: "categories",
-  initialState: { data: [], loading: false, error: false },
+  initialState: { data: [], loading: false, error: null },
   reducers: {},
   extraReducers: {
     [fetchCategories.pending.toString()]: (state) => {
       state.loading = true;
-      state.error = false;
+      state.error = null;
     },
     [fetchCategories.fulfilled.toString()]: (state, action) => {
       state.loading = false;
       state.data = action.payload;
     },
-    [fetchCategories.rejected.toString()]: (state) => {
+    [fetchCategories.rejected.toString()]: (state, action) => {
       state.loading = false;
-      state.error = true;
+      state.error = action?.payload;
     },
   },
 });

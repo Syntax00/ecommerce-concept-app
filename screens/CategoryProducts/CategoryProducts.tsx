@@ -1,11 +1,12 @@
 import React from "react";
-import { Platform, RefreshControl, FlatList } from "react-native";
+import { Platform, RefreshControl, FlatList, ScrollView } from "react-native";
 
 import PageContainer from "../../components/UIElements/PageContainer";
 import WithNetworkCall from "../../components/WithNetworkCall/WithNetworkCall";
 import SectionTitle from "../../components/UIElements/SectionTitle";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import EmptyStatePlaceholder from "../../components/UIElements/EmptyStatePlaceholder/EmptyStatePlaceholder";
+import ErrorStatePlaceholder from "../../components/UIElements/ErrorStatePlaceholder/ErrorStatePlaceholder";
 
 import PRODUCTS_APIS from "../../Networking/productsAPIs";
 import usePullToRefresh from "../../hooks/usePullToRefresh";
@@ -65,6 +66,22 @@ const CategoryProducts = ({ route }: { route: any }) => {
           refresh={refresh}
           categoryName={categoryName}
         />
+      )}
+      OnFailureComponent={({ error }: { error: string }) => (
+        <ScrollView
+          contentContainerStyle={styles.errorContainer}
+          refreshControl={
+            <RefreshControl
+              refreshing={refresh}
+              onRefresh={() => setRefresh(true)}
+            />
+          }
+        >
+          <ErrorStatePlaceholder
+            message={error}
+            messageDescription="Try reloading the page, it might fix the problem."
+          />
+        </ScrollView>
       )}
       deps={[refresh]}
     />

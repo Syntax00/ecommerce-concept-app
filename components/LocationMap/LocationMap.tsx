@@ -8,9 +8,11 @@ import styles from "./LocationMap.styles";
 const LocationMap = ({
   initialRegion,
   onLocationChange = (_) => _,
+  loadingMapHandler = () => null,
 }: {
   initialRegion: object;
   onLocationChange: unaryFunction;
+  loadingMapHandler?: () => void;
 }) => {
   const [region, setRegion] = useState(initialRegion);
 
@@ -28,6 +30,7 @@ const LocationMap = ({
     <View style={styles.container}>
       <MapView
         style={styles.map}
+        onMapReady={loadingMapHandler}
         initialRegion={{
           latitude: lat,
           longitude: lng,

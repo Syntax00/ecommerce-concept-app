@@ -7,7 +7,7 @@ const usePullToRefresh = () => {
     setRefresh(false);
   }, [refresh]);
 
-  return [refresh, setRefresh];
+  return [refresh, setRefresh] as const;
 };
 
 export default usePullToRefresh;

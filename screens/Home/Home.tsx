@@ -10,6 +10,8 @@ import Categories from "../../components/Categories/Categories";
 import Separator from "../../components/UIElements/Separator";
 import LatestProducts from "../../components/LatestProducts/LatestProducts";
 import WithNetworkCall from "../../components/WithNetworkCall/WithNetworkCall";
+import ErrorStatePlaceholder from "../../components/UIElements/ErrorStatePlaceholder/ErrorStatePlaceholder";
+import Loader from "../../components/UIElements/Loader";
 
 import PRODUCTS_APIS from "../../Networking/productsAPIs";
 import { fetchCategories } from "../../store/slices/categories";
@@ -18,18 +20,12 @@ import usePullToRefresh from "../../hooks/usePullToRefresh";
 
 import styles from "./Home.styles";
 
-const HomeContent = ({
-  latestProducts,
-  handleRefresh,
-  refresh,
-}: {
-  latestProducts: ProductType[];
-  handleRefresh: any;
-  refresh: any;
-}) => {
-  const { data: categoriesData = [] } = useSelector(
-    (state: RootStateOrAny) => state.categories
-  );
+const HomeContent = ({ latestProducts }: { latestProducts: ProductType[] }) => {
+  const {
+    data: categoriesData = [],
+    loading: categoriesLoading,
+    error: categoriesError,
+  } = useSelector((state: RootStateOrAny) => state.categories);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,32 +35,31 @@ const HomeContent = ({
     })();
   }, []);
 
+  if (categoriesLoading) return <Loader secondary />;
+  if (categoriesError)
+    return (
+      <ErrorStatePlaceholder
+        message={categoriesError}
+        messageDescription="Couldn't get categories data, try reloading the page."
+      />
+    );
+
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      refreshControl={
-        <RefreshControl
-          refreshing={refresh}
-          onRefresh={() => handleRefresh(true)}
-        />
-      }
-    >
-      <View style={styles.content}>
-        <View style={styles.categoriesWrapper}>
-          <Categories data={categoriesData} />
+    <View style={styles.content}>
+      <View style={styles.categoriesWrapper}>
+        <Categories data={categoriesData} />
+      </View>
+
+      <PageContainer>
+        <View style={styles.carouselContainer}>
+          <ProductsCarousel items={latestProducts} />
         </View>
 
-        <PageContainer>
-          <View style={styles.carouselContainer}>
-            <ProductsCarousel items={latestProducts} />
-          </View>
+        <Separator />
+      </PageContainer>
 
-          <Separator />
-        </PageContainer>
-
-        <LatestProducts data={latestProducts} />
-      </View>
-    </ScrollView>
+      <LatestProducts data={latestProducts} />
+    </View>
   );
 };
 
@@ -77,21 +72,31 @@ const Home = () => {
         <SearchBar />
       </PageContainer>
 
-      <View style={styles.container}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => setRefresh(true)}
+          />
+        }
+      >
         <WithNetworkCall
           promiseFunc={() =>
             PRODUCTS_APIS.getAllProducts({ sort: "desc", limit: 5 })
           }
           OnSuccessComponent={({ data }: { data: ProductType[] }) => (
-            <HomeContent
-              latestProducts={data}
-              handleRefresh={setRefresh}
-              refresh={refresh}
+            <HomeContent latestProducts={data} />
+          )}
+          OnFailureComponent={({ error }: { error: string }) => (
+            <ErrorStatePlaceholder
+              message={error}
+              messageDescription="Couldn't get products, try reloading the page."
             />
           )}
           deps={[refresh]}
         />
-      </View>
+      </ScrollView>
     </CustomSafeAreaView>
   );
 };

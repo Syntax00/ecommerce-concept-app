@@ -15,6 +15,7 @@ import ToggleSwitch from "../../components/UIElements/ToggleSwitch/ToggleSwitch"
 import EmptyStatePlaceholder from "../../components/UIElements/EmptyStatePlaceholder/EmptyStatePlaceholder";
 import CircularButton from "../../components/UIElements/CircularButton";
 import CustomText from "../../components/UIElements/CustomText";
+import ErrorStatePlaceholder from "../../components/UIElements/ErrorStatePlaceholder/ErrorStatePlaceholder";
 
 import { navigate } from "../../navigation/navigationService";
 
@@ -45,12 +46,19 @@ const Profile = () => {
     Permissions.NOTIFICATIONS
   );
   const [locationPermission] = Permissions.usePermissions(Permissions.LOCATION);
-  const { data: userData = {}, loading } = useSelector(
+  const { data: userData = {}, loading, error } = useSelector(
     (state: RootStateOrAny) => state.user
   );
   const addresses = useSelector((state: RootStateOrAny) => state.addresses);
 
   if (loading) return <Loader secondary />;
+  if (error)
+    return (
+      <ErrorStatePlaceholder
+        message={error}
+        messageDescription="Couldn't get user profile data, try again later!"
+      />
+    );
 
   const addressesJSX =
     addresses && addresses.length ? (
@@ -104,7 +112,7 @@ const Profile = () => {
           <CircularButton action={() => navigate("AddAddress")} icon="plus" />
         </View>
 
-        <View style={styles.togglersContainer}>{addressesJSX}</View>
+        <View style={styles.addressesContainer}>{addressesJSX}</View>
       </PageContainer>
     </ScrollView>
   );

@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { dimensions, themeColors } from "../../utilities/common";
 
 export default StyleSheet.create({
+  container: { flex: 1 },
   productImageWrapper: {
     backgroundColor: themeColors.white,
     paddingVertical: 20,

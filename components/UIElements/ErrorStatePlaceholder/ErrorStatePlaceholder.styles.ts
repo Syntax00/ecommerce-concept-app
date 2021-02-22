@@ -5,15 +5,13 @@ import { themeColors } from "../../../utilities/common";
 export default StyleSheet.create({
   container: { flex: 1, justifyContent: "center", alignItems: "center" },
   image: {
-    width: 130,
-    height: 130,
+    width: 200,
+    height: 200,
     resizeMode: "contain",
-    borderRadius: 100,
   },
   messageWrapper: {
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 20,
   },
   message: {
     fontSize: 14,

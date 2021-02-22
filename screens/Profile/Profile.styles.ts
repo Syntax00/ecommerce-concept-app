@@ -23,10 +23,19 @@ export default StyleSheet.create({
     borderBottomWidth: 10,
     borderRadius: 12,
   },
+  addressesContainer: {
+    marginHorizontal: 10,
+    backgroundColor: "white",
+    padding: 15,
+    borderBottomColor: themeColors.gray1,
+    borderBottomWidth: 10,
+    borderRadius: 12,
+  },
   addressContainer: {
     flexDirection: "row",
     alignItems: "center",
     padding: 10,
+    paddingRight: 15
   },
   addressIcon: {
     color: themeColors.primary,
