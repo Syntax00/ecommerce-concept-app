@@ -41,11 +41,13 @@ export default StyleSheet.create({
     fontWeight: "500",
     fontSize: 12,
     color: themeColors.secondary,
+    textAlign: "left",
   },
   price: {
     fontWeight: "700",
     fontSize: 14,
     color: themeColors.black,
     marginVertical: 5,
+    textAlign: "left",
   },
 });

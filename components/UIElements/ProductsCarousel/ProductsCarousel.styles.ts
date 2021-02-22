@@ -17,11 +17,13 @@ export default StyleSheet.create({
     color: themeColors.black,
     fontWeight: "700",
     marginBottom: 5,
+    textAlign: "left",
   },
   image: { width: "100%", height: 0.23 * dimensions.windowHeight },
   description: {
     fontSize: 11,
     fontWeight: "100",
+    textAlign: "left",
   },
   salePatch: {
     backgroundColor: themeColors.black,
