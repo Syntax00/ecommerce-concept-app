@@ -10,6 +10,32 @@
 5. React Navigation
 
 
+# Installation
+```javascript
+npm i
+npm start
+```
+Then, connect the simulator or the device and run the project through the Expo console.
+Or, scan QR code using the Expo Go client on physical phone (Android only), 
+
+## Implemented Features
+1. Categories listing
+2. Featured products listing
+3. Category products listing
+4. View product details
+5. Add products to Cart
+6. Remove products from Cart
+7. Cart listing
+8. Products swiper
+9. User profile
+10. Toggle RTL direction
+11. Notifications & Location permissions control
+12. Addresses listing
+13. Add addresess
+14. Map view to select address location (defaults to user's current location)
+15. Searchbar UI (not functional)
+
+
 ## Project Structure
 ```javascript
 -- components (contains all the components being utilized and composed to form the screens)
