@@ -20,7 +20,6 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
     paddingLeft: 10,
     backgroundColor: themeColors.white,
-    flex: 1,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
   },

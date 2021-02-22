@@ -41,6 +41,7 @@ export default StyleSheet.create({
     fontWeight: "700",
     color: themeColors.secondary,
     marginBottom: 5,
+    textAlign: "left"
   },
   productCategory: {
     paddingVertical: 4,
@@ -51,6 +52,7 @@ export default StyleSheet.create({
   productDescription: {
     fontSize: 14,
     color: themeColors.secondary,
+    textAlign: "left"
   },
   addToCartWrapper: {
     paddingVertical: 15,

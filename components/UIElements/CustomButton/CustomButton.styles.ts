@@ -31,10 +31,12 @@ export default StyleSheet.create({
     color: themeColors.black,
     paddingLeft: 10,
     fontWeight: "500",
+    textAlign: 'left'
   },
   btnTextSecondary: {
     color: themeColors.white,
     fontWeight: "500",
+    textAlign: 'left'
   },
   btnIcon: {
     textAlign: "center",

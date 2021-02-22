@@ -22,15 +22,7 @@ import { navigate } from "../../navigation/navigationService";
 
 import styles from "./ProductDetails.styles";
 
-const ProductDetailsView = ({
-  data,
-  handleRefresh,
-  refresh,
-}: {
-  data: ProductType;
-  handleRefresh: any;
-  refresh: any;
-}) => {
+const ProductDetailsView = ({ data }: { data: ProductType }) => {
   const dispatch = useDispatch();
 
   const { category, price, image, title, description, id } = data;
@@ -102,7 +94,6 @@ const ProductDetails = ({ route }: { route: any }) => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.container}
       refreshControl={
         <RefreshControl
           refreshing={refresh}

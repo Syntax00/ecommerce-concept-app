@@ -27,13 +27,16 @@ export default StyleSheet.create({
   productInfoWrapper: {
     padding: 14,
     width: "70%",
+    alignItems: "flex-start",
   },
   productTitle: {
     fontWeight: "700",
     marginBottom: 6,
+    textAlign: "left",
   },
   productDescription: {
     fontSize: 14,
+    textAlign: "left",
   },
   price: {
     fontWeight: "700",

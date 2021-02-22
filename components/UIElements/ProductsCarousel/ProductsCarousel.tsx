@@ -39,7 +39,7 @@ const ProductsCarousel = ({ items = [] }: { items: ProductType[] }) => {
   return (
     <Carousel
       ref={cRef}
-      layout={"stack"}
+      layout="default"
       layoutCardOffset={18}
       data={items}
       renderItem={_renderItem}

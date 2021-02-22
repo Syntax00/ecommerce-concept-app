@@ -39,6 +39,7 @@ const HomeNavigator = () => (
           color: themeColors.secondary,
         },
         headerTintColor: themeColors.secondary,
+        headerTitleStyle: { alignSelf: "flex-start" },
       }}
     />
     <HomeStack.Screen
@@ -50,6 +51,7 @@ const HomeNavigator = () => (
           color: themeColors.secondary,
         },
         headerTintColor: themeColors.secondary,
+        headerTitleStyle: { alignSelf: "flex-start" },
       }}
     />
     <HomeStack.Screen
@@ -61,6 +63,7 @@ const HomeNavigator = () => (
           color: themeColors.secondary,
         },
         headerTintColor: themeColors.secondary,
+        headerTitleStyle: { alignSelf: "flex-start" },
       }}
     />
   </HomeStack.Navigator>
@@ -68,7 +71,11 @@ const HomeNavigator = () => (
 
 const ProfileNavigator = () => (
   <ProfileStack.Navigator>
-    <ProfileStack.Screen name="Profile" component={Profile} />
+    <ProfileStack.Screen
+      name="Profile"
+      component={Profile}
+      options={{ headerTitleStyle: { alignSelf: "flex-start" } }}
+    />
     <ProfileStack.Screen
       name="AddAddress"
       component={AddAddress}
@@ -78,6 +85,7 @@ const ProfileNavigator = () => (
           color: themeColors.secondary,
         },
         headerTintColor: themeColors.secondary,
+        headerTitleStyle: { alignSelf: "flex-start" },
       }}
     />
   </ProfileStack.Navigator>

@@ -26,6 +26,7 @@ export default StyleSheet.create({
     width: "70%",
     paddingVertical: 15,
     paddingLeft: 5,
+    alignItems: "flex-start"
   },
   userFullName: {
     fontSize: 18,
