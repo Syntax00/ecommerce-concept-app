@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { View } from "react-native";
 import _get from "lodash/get";
 
@@ -30,6 +30,7 @@ const LocationMap = ({
     <View style={styles.container}>
       <MapView
         style={styles.map}
+        provider={PROVIDER_GOOGLE}
         onMapReady={loadingMapHandler}
         initialRegion={{
           latitude: lat,

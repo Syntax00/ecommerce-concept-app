@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Linking, RefreshControl, ScrollView, View } from "react-native";
+import { RefreshControl, ScrollView, View } from "react-native";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 import ProductsCarousel from "../../components/UIElements/ProductsCarousel/ProductsCarousel";
@@ -17,11 +17,6 @@ import PRODUCTS_APIS from "../../Networking/productsAPIs";
 import { fetchCategories } from "../../store/slices/categories";
 import { fetchUserData } from "../../store/slices/user";
 import usePullToRefresh from "../../hooks/usePullToRefresh";
-import { navigate } from "../../navigation/navigationService";
-const queryString = require("query-string");
-console.log({
-  well: queryString.parse("tradelingapp://product?id=1".split("?")[1]),
-});
 
 import styles from "./Home.styles";
 
@@ -70,19 +65,6 @@ const HomeContent = ({ latestProducts }: { latestProducts: ProductType[] }) => {
 
 const Home = () => {
   const [refresh, setRefresh] = usePullToRefresh();
-
-  useEffect(() => {
-    const getUrlAsync = async () => {
-      const url = await Linking.getInitialURL();
-      
-      if (url) {
-        const productId = queryString.parse(url.split("?")[1]);
-        if (productId?.id) navigate("ProductDetails", productId);
-      }
-    };
-
-    getUrlAsync();
-  }, []);
 
   return (
     <CustomSafeAreaView>

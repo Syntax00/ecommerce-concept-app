@@ -18,7 +18,10 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.tradeling.task",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.0.0",
+      "config": {
+        "googleMapsApiKey": "AIzaSyAFdhiJ4Ahfd8RLjlO4_mbEMx6xPloHjKM"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -31,7 +34,12 @@
         "LOCATION",
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION"
-      ]
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCkpLaeNKxOf-A5hDRG0fhfR-lUvBdO5yA"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/images/favicon.png"

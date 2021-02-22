@@ -34,7 +34,6 @@ const CustomTabBar = (props: any) => (
   />
 );
 const TabView = ({ scenes = [] }: { scenes: SceneType[] }) => {
-  console.log({ scenes });
   const [index, setIndex] = useState(0);
   const [routes, setRoutes] = useState(getRoutes(scenes));
   const _handleIndexChange = (ndx: number) => setIndex(ndx);

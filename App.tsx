@@ -13,6 +13,7 @@ import { isMountedRef } from "./navigation/navigationService";
 import { fonts, themeColors } from "./utilities/common";
 import store from "./store";
 import FlashMessage from "react-native-flash-message";
+import useDeeplinkRedirect from "./hooks/useDeeplinkRedirect";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -21,7 +22,7 @@ export default function App() {
   const [, askForNotificationsPermission] = Permissions.usePermissions(
     Permissions.NOTIFICATIONS
   );
-  
+
   useEffect(() => {
     askForNotificationsPermission();
 
@@ -29,13 +30,15 @@ export default function App() {
 
     return () => (isMountedRef.current = false);
   }, []);
+  const [url] = useDeeplinkRedirect();
+
   if (!isLoadingComplete || !fontsLoaded) {
     return null;
   } else {
     return (
       <Provider store={store}>
         <SafeAreaProvider>
-          <Navigation colorScheme={colorScheme} />
+          <Navigation colorScheme={colorScheme} url={url} />
           <StatusBar backgroundColor={themeColors.gray} />
           <FlashMessage position="bottom" />
         </SafeAreaProvider>
